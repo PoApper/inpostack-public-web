@@ -1,0 +1,33 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.modal_button {
+  font-size: 10px !important;
+  padding: 5px !important;
+  line-height: 10px !important;
+  margin: 0.2rem !important;
+}
+
+.create_button {
+  background-color: #00758e !important;
+  color: white !important;
+}
+
+.delete_button {
+  background-color: #da1451 !important;
+  color: white !important;
+}

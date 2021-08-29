@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "public-web",
+      "script": "npm",
+      "args": "run start"
+    }
+  ]
+}

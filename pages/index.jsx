@@ -1,5 +1,6 @@
-import Layout from '../components/layout';
 import styled from 'styled-components';
+
+import Layout from '../components/layout';
 import Recommend from '../components/index/recommend'
 import Notice from '../components/index/notice'
 import { InPoStackText } from '../components/common/title'

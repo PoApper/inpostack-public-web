@@ -1,27 +1,87 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Grid } from 'semantic-ui-react'
+import axios from 'axios'
+import { Image } from 'semantic-ui-react'
 
-const Recommend = () => {
-  const getOverviewElement = ({ header }) => {
-    return <Grid.Column>
-      <MainBox>
-        <h3>{header}</h3>
-      </MainBox>
-    </Grid.Column>
-  }
+const RecommendStore = () => {
+  const [stores, setStores] = useState([])
+
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/store`)
+      setStores(res.data.slice(0, 4))
+    } catch (err) {
+      alert('추천 가게 목록을 불러오는데 실패했습니다.')
+    }
+  }, [])
+
+  return (
+    <div>
+      <Title>오늘은 여기 어때요?</Title>
+      <CardContainer>
+        {
+          stores.map(store => {
+            return (
+              <MainBox key={store.uuid}>
+                <Image
+                  src={'https://source.unsplash.com/600x600/?food'}
+                  atl={'store_img'}
+                  width={120} height={120}
+                  centered
+                />
+                <h3>{store.name}</h3>
+              </MainBox>
+            )
+          })
+        }
+      </CardContainer>
+    </div>
+  )
+}
+
+const RecommendMenu = () => {
+  const [menus, setMenus] = useState([])
+
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/menu`)
+      setMenus(res.data.slice(0, 4))
+    } catch (err) {
+      alert('추천 메뉴 목록을 불러오는데 실패했습니다.')
+    }
+  }, [])
 
   return (
     <div>
       <Title>이런 메뉴는 어때요?</Title>
-      <Grid columns={4} stackable>
-        <Grid.Row stretched>
-          {getOverviewElement({ header: '순살 후라이드 파닭' })}
-          {getOverviewElement({ header: '허니 머스타드 파닭' })}
-          {getOverviewElement({ header: '간장 파닭' })}
-          {getOverviewElement({ header: '크림머스타드 파닭' })}
-        </Grid.Row>
-      </Grid>
+      <CardContainer>
+        {
+          menus.map(menu => {
+            return (
+              <MainBox key={menu.uuid}>
+                <Image
+                  src={'https://source.unsplash.com/600x600/?food'}
+                  alt={'food_img'}
+                  width={120} height={120}
+                  centered
+                />
+                <h3>{menu.name}</h3>
+              </MainBox>
+            )
+          })
+        }
+      </CardContainer>
+    </div>
+  )
+}
+
+const Recommend = () => {
+  return (
+    <div>
+      {
+        Math.floor(Math.random() * 10) % 2 ? <RecommendStore/> :
+          <RecommendMenu/>
+      }
     </div>
   )
 }
@@ -38,6 +98,7 @@ const MainBox = styled.div`
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
   padding: 25px 24px 25px;
   transition: all 200ms;
+  text-align: center;
 
   &:hover {
     transform: translateY(-5px);
@@ -53,5 +114,16 @@ const MainBox = styled.div`
   p {
     font-size: 35px;
     margin: auto;
+  }
+`
+
+const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  align-items: stretch;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(2, 1fr);
   }
 `

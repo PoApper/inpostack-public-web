@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Button, Dropdown, Image, Menu } from 'semantic-ui-react'
+import { Button, Dropdown, Image, Search, Menu } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import useUser from '../data/useUser'
@@ -30,6 +30,11 @@ const Navbar = () => {
               </LogoDiv>
             </LogoMenuItem>
           </Link>
+          <SearchWrapper>
+            <Search
+              input={{ fluid: true }}
+            />
+          </SearchWrapper>
           {
             user ?
               <Menu.Item position={'right'}>
@@ -102,4 +107,9 @@ const LogoMenuItem = styled(Menu.Item)`
   &:hover {
     background: white !important;
   }
+`
+
+const SearchWrapper = styled.div`
+  margin: auto 0;
+  width: 400px;
 `

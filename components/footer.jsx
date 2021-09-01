@@ -8,7 +8,7 @@ const Footer = () => {
         <Grid style={{ width: '100%' }}>
           <Grid.Row>
             <Grid.Column width={3}>
-              <Image src='/PoApper_logo.svg' size="small" left
+              <Image src='/PoApper_logo.svg' size="small"
                      alt="poapper_logo"/>
             </Grid.Column>
             <Grid.Column width={6}>

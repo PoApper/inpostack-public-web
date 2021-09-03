@@ -34,6 +34,15 @@ const RecommendStore = () => {
             )
           })
         }
+        <MainBox key={"random"}>
+          <Image
+            src={"https://thumbs.gfycat.com/SecondTartCygnet-max-1mb.gif"}
+            atl={'random'}
+            width={120} height={120}
+            centered
+          />
+          <h3>Random Pick</h3>
+        </MainBox>
       </CardContainer>
     </div>
   )
@@ -70,6 +79,15 @@ const RecommendMenu = () => {
             )
           })
         }
+        <MainBox key={"random"}>
+          <Image
+            src={"https://thumbs.gfycat.com/SecondTartCygnet-max-1mb.gif"}
+            atl={'random'}
+            width={120} height={120}
+            centered
+          />
+          <h3>Random Pick</h3>
+        </MainBox>
       </CardContainer>
     </div>
   )
@@ -119,7 +137,7 @@ const MainBox = styled.div`
 
 const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 1rem;
   align-items: stretch;
 

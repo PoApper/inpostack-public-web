@@ -21,6 +21,60 @@ const Store = () => {
   return (
     <Layout>
       <Title>가게 목록</Title>
+      <StoreTypesList>
+        <LogoDiv>
+          <StoreLogoImg src={'/inpostack-logo.svg'}/>
+          <p>전체보기</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/된장찌개.svg'}/>
+          <p>찌개</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/디저트.svg'}/>
+          <p>디저트</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/떡볶이.svg'}/>
+          <p>분식</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/물고기.svg'}/>
+          <p>해산물</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/밥.svg'}/>
+          <p>정식</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/보쌈.svg'}/>
+          <p>고기/보쌈</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/스테이크.svg'}/>
+          <p>양식</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/짜장면.svg'}/>
+          <p>중식</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/초밥.svg'}/>
+          <p>일식</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/치킨.svg'}/>
+          <p>치킨</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/피자.svg'}/>
+          <p>피자</p>
+        </LogoDiv>
+        <LogoDiv>
+          <StoreLogoImg src={'/store_logo/햄버거.svg'}/>
+          <p>햄버거</p>
+        </LogoDiv>
+      </StoreTypesList>
       <StoreGrid>
         {
           stores.map(store => {
@@ -49,6 +103,26 @@ export default Store
 
 const Title = styled.h2`
   letter-spacing: -1px;
+`
+
+const StoreTypesList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  margin: 2rem 0;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+`
+
+const LogoDiv = styled.div`
+  text-align: center;
+
+`
+
+const StoreLogoImg = styled.img`
+  width: 48px;
+  height: 48px;
 `
 
 const StoreGrid = styled.div`

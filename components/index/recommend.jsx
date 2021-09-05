@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import { Image } from 'semantic-ui-react'
+import { Icon, Image } from 'semantic-ui-react'
 
 const RecommendStore = () => {
   const [stores, setStores] = useState([])
@@ -35,11 +35,11 @@ const RecommendStore = () => {
           })
         }
         <MainBox key={"random"}>
-          <Image
-            src={"https://thumbs.gfycat.com/SecondTartCygnet-max-1mb.gif"}
-            atl={'random'}
-            width={120} height={120}
-            centered
+          <Icon
+            circular
+            name={"random"} size={'huge'}
+            className={"box bounce-distortion inpostack-red2"}
+            style={{margin: "auto"}}
           />
           <h3>Random Pick</h3>
         </MainBox>
@@ -80,11 +80,11 @@ const RecommendMenu = () => {
           })
         }
         <MainBox key={"random"}>
-          <Image
-            src={"https://thumbs.gfycat.com/SecondTartCygnet-max-1mb.gif"}
-            atl={'random'}
-            width={120} height={120}
-            centered
+          <Icon
+            circular
+            name={"random"} size={'huge'}
+            className={"box bounce-distortion inpostack-blue2"}
+            style={{margin: "auto"}}
           />
           <h3>Random Pick</h3>
         </MainBox>
@@ -97,7 +97,8 @@ const Recommend = () => {
   return (
     <div>
       {
-        Math.floor(Math.random() * 10) % 2 ? <RecommendStore/> :
+        Math.floor(Math.random() * 10) % 2 ?
+          <RecommendStore/> :
           <RecommendMenu/>
       }
     </div>
@@ -117,6 +118,8 @@ const MainBox = styled.div`
   padding: 25px 24px 25px;
   transition: all 200ms;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-5px);

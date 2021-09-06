@@ -29,7 +29,6 @@ const Login = () => {
       <Image src={"/inpostack-logo.svg"} alt="logo"
              width={200} height={200}/>
       <Title>InPoStack</Title>
-      <SubTitle>점주 페이지</SubTitle>
 
       <Form style={{width: '22rem'}}>
         <Form.Input
@@ -58,12 +57,6 @@ const Title = styled.h2`
   margin-bottom: 8px;
   font-size: 36px !important;
   font-family: Oswald, serif !important;
-  font-weight: 500;
-`
-
-const SubTitle = styled.h3`
-  margin-top: 0;
-  font-size: 26px !important;
   font-weight: 500;
 `
 

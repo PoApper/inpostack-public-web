@@ -5,7 +5,7 @@ const LoginLayout = ({ children }) => {
   return (
     <div>
       <Head>
-        <title>InPoStack 점주페이지</title>
+        <title>InPoStack</title>
         <meta name="description" content="InPoStack 행복한 배달 생활"/>
         <link rel="icon" href={"/favicon.ico"}/>
       </Head>

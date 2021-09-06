@@ -14,17 +14,18 @@ const CardDiv = () => {
                 <CardTextDiv>
                   <h2><InPoStackText/>으로 배달 시켜 먹자!</h2>
                   <TagP>
-                    #개꿀맛 #이런_맛집이?
+                    #개꿀맛 #이런맛집이?
                   </TagP>
                   <CardButton>
-                    배달 <Icon name={'arrow right'}/>
+                    가게 목록 <Icon name={'arrow right'}/>
                   </CardButton>
                 </CardTextDiv>
                 <Image centered src={'/inpostack-logo.svg'} alt="logo"
                        style={{
-                         height: '200px',
+                         height: '160px',
                          float: 'right',
                          marginRight: '80px',
+                         marginTop: '-60px',
                        }}
                 />
               </CardBox>
@@ -36,7 +37,7 @@ const CardDiv = () => {
                 <CardTextDiv>
                   <h2>학식, 버거킹 GoGo</h2>
                   <TagP>
-                    #근본_와퍼 #가성비_ㅅㅌㅊ #포식이
+                    #근본와퍼 #가성비ㅅㅌㅊ #포식이
                   </TagP>
                   <CardButton>
                     In POSTECH? <Icon name={'arrow right'}/>
@@ -44,8 +45,8 @@ const CardDiv = () => {
                 </CardTextDiv>
                 <Image
                   src={'https://popo.poapper.com/static/media/jigok.a2009d3b.jpg'}
-                  height={200}
-                  style={{ float: 'right' }}
+                  height={160}
+                  style={{ float: 'right', marginTop: '-60px' }}
                 />
               </CardBox>
             </Link>
@@ -73,7 +74,6 @@ const CardBox = styled.div`
   background-color: #fff;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
   padding: 25px 24px 25px;
-  transition: all 200ms;
   cursor: pointer;
 `
 

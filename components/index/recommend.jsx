@@ -37,7 +37,7 @@ const RecommendStore = () => {
         <MainBox key={"random"}>
           <Icon
             circular
-            name={"random"} size={'huge'}
+            name={"random"} size={'big'}
             className={"box bounce-distortion inpostack-red2"}
             style={{margin: "auto"}}
           />
@@ -82,7 +82,7 @@ const RecommendMenu = () => {
         <MainBox key={"random"}>
           <Icon
             circular
-            name={"random"} size={'huge'}
+            name={"random"} size={'big'}
             className={"box bounce-distortion inpostack-blue2"}
             style={{margin: "auto"}}
           />

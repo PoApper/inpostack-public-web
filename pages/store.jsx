@@ -8,6 +8,7 @@ import Layout from '../components/layout'
 
 const Store = () => {
   const [stores, setStores] = useState([])
+  const [selectedStoreType, setStoreType] = useState('all')
 
   useEffect(async () => {
     try {
@@ -82,7 +83,7 @@ const Store = () => {
               <Link href={`/store/${store.name}`} key={store.uuid}>
                 <MainBox>
                   <Image
-                    src={'https://source.unsplash.com/600x600/?food'}
+                    src={store.image_url ?? 'https://source.unsplash.com/600x600/?food'}
                     alt={'food_img'}
                     width={120} height={120}
                     centered
@@ -110,6 +111,10 @@ const StoreTypesList = styled.div`
   grid-template-columns: repeat(13, 1fr);
   margin: 2rem 0;
 
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  
   @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -130,6 +135,10 @@ const StoreGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   align-items: stretch;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 const MainBox = styled.div`

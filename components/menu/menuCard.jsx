@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+// TODO: show menu like/hate
+
 const MenuCard = (props) => {
   const menu = props.menu
 
@@ -20,7 +22,7 @@ const MenuCard = (props) => {
         </Rating>
       </InfoColumn>
       <ImageColumn>
-        <img src="https://via.placeholder.com/100"
+        <img src={menu.image_url ?? "https://via.placeholder.com/100"}
              alt={`${menu.name}_photo`}
              width={100} height={100}
              style={{ marginBottom: '0.6rem' }}/>

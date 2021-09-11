@@ -8,44 +8,51 @@ const RecommendStore = () => {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/store`)
-      setStores(res.data.slice(0, 4))
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API}/store/recommend`)
+      setStores(res.data)
     } catch (err) {
       alert('추천 가게 목록을 불러오는데 실패했습니다.')
     }
   }, [])
 
-  return (
-    <div>
-      <Title>오늘은 여기 어때요?</Title>
-      <CardContainer>
-        {
-          stores.map(store => {
-            return (
-              <MainBox key={store.uuid}>
-                <Image
-                  src={'https://source.unsplash.com/600x600/?food'}
-                  atl={'store_img'}
-                  width={120} height={120}
-                  centered
-                />
-                <h3>{store.name}</h3>
-              </MainBox>
-            )
-          })
-        }
-        <MainBox key={"random"}>
-          <Icon
-            circular
-            name={"random"} size={'big'}
-            className={"box bounce-distortion inpostack-red2"}
-            style={{margin: "auto"}}
-          />
-          <h3>Random Pick</h3>
-        </MainBox>
-      </CardContainer>
-    </div>
-  )
+  if (stores.length) {
+    return (
+      <div>
+        <Title>오늘은 여기 어때요?</Title>
+        <CardContainer>
+          {
+            stores.map(store => {
+              return (
+                <MainBox key={store.uuid}>
+                  <Image
+                    src={store.image_url ??
+                    'https://source.unsplash.com/600x600/?food'}
+                    atl={'store_img'}
+                    width={120} height={120}
+                    centered
+                  />
+                  <h3>{store.name}</h3>
+                </MainBox>
+              )
+            })
+          }
+          <MainBox key={'random'}>
+            <Icon
+              circular
+              name={'random'} size={'big'}
+              className={'box bounce-distortion inpostack-red2'}
+              style={{ margin: 'auto' }}
+            />
+            <h3>Random Pick</h3>
+          </MainBox>
+        </CardContainer>
+      </div>
+    )
+  } else {
+    // TODO: 가게 없음 Hero 구현할 것
+    return (<></>)
+  }
 }
 
 const RecommendMenu = () => {
@@ -53,44 +60,51 @@ const RecommendMenu = () => {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/menu`)
-      setMenus(res.data.slice(0, 4))
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API}/menu/recommend`)
+      setMenus(res)
     } catch (err) {
       alert('추천 메뉴 목록을 불러오는데 실패했습니다.')
     }
   }, [])
 
-  return (
-    <div>
-      <Title>이런 메뉴는 어때요?</Title>
-      <CardContainer>
-        {
-          menus.map(menu => {
-            return (
-              <MainBox key={menu.uuid}>
-                <Image
-                  src={'https://source.unsplash.com/600x600/?food'}
-                  alt={'food_img'}
-                  width={120} height={120}
-                  centered
-                />
-                <h3>{menu.name}</h3>
-              </MainBox>
-            )
-          })
-        }
-        <MainBox key={"random"}>
-          <Icon
-            circular
-            name={"random"} size={'big'}
-            className={"box bounce-distortion inpostack-blue2"}
-            style={{margin: "auto"}}
-          />
-          <h3>Random Pick</h3>
-        </MainBox>
-      </CardContainer>
-    </div>
-  )
+  if (menus.length) {
+    return (
+      <div>
+        <Title>이런 메뉴는 어때요?</Title>
+        <CardContainer>
+          {
+            menus.map(menu => {
+              return (
+                <MainBox key={menu.uuid}>
+                  <Image
+                    src={menu.image_url ??
+                    'https://source.unsplash.com/600x600/?food'}
+                    alt={'food_img'}
+                    width={120} height={120}
+                    centered
+                  />
+                  <h3>{menu.name}</h3>
+                </MainBox>
+              )
+            })
+          }
+          <MainBox key={'random'}>
+            <Icon
+              circular
+              name={'random'} size={'big'}
+              className={'box bounce-distortion inpostack-blue2'}
+              style={{ margin: 'auto' }}
+            />
+            <h3>Random Pick</h3>
+          </MainBox>
+        </CardContainer>
+      </div>
+    )
+  } else {
+    // TODO: 메뉴 없음 Hero 구현할 것
+    return (<></>)
+  }
 }
 
 const Recommend = () => {

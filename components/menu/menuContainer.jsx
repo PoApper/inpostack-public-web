@@ -66,4 +66,8 @@ const MenuGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   padding: 10px 1rem 20px;
   grid-gap: 1rem;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `

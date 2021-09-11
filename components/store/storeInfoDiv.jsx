@@ -40,9 +40,14 @@ const StoreInfoDiv = (props) => {
 export default StoreInfoDiv;
 
 const StoreInfoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   margin-bottom: 1rem;
+  grid-gap: 1rem;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 const StoreLogo = styled.div`

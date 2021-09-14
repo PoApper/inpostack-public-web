@@ -1,4 +1,4 @@
-import { Grid, Image } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 const Footer = () => {
@@ -15,7 +15,9 @@ const Footer = () => {
               </Grid.Column>
               <Grid.Column width={6}>
                 <div style={{display: 'flex', justifyContent:'center'}}>
-                  <a href="https://club.poapper.com"><Image src='/PoApper_Logo_cut.svg' size="mini" alt="poapper_logo"/></a>
+                  <a href="https://club.poapper.com">
+                    <img src={'/PoApper_Logo_cut.png'} width={30} height={30} alt="poapper_logo"/>
+                  </a>
                 </div>
               </Grid.Column>
               <Grid.Column>

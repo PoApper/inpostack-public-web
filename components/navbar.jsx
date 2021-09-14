@@ -89,10 +89,12 @@ const MobileNavbar = (props) => {
           <Icon name={'sidebar'}/>
         </Menu.Item>
         <Menu.Item>
-          <LogoDiv>
-            <Image centered src={'/inpostack-logo.svg'} alt="logo"
-                   style={{ width: '24px' }}/>
-          </LogoDiv>
+          <Link href={'/'}>
+            <LogoDiv>
+              <Image centered src={'/inpostack-logo.svg'} alt="logo"
+                     style={{ width: '24px' }}/>
+            </LogoDiv>
+          </Link>
         </Menu.Item>
         <Menu.Item position={'right'}>
           <Icon name={'user'}/>
@@ -147,6 +149,7 @@ const LogoDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 `
 
 const BottomMenu = styled(Menu)`

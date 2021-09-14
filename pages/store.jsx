@@ -79,17 +79,24 @@ const Store = () => {
       <StoreGrid>
         {
           stores.map(store => {
-            if(selectedStoreType === 'all' || store.store_type === selectedStoreType) {
+            if (selectedStoreType === 'all' || store.store_type ===
+              selectedStoreType) {
               return (
                 <Link href={`/store/${store.name}`} key={store.uuid}>
                   <MainBox>
-                    <Image
-                      src={store.image_url ?? 'https://source.unsplash.com/600x600/?food'}
-                      alt={'food_img'}
-                      width={120} height={120}
-                      centered
-                    />
-                    <h4>{store.name}</h4>
+                    <StoreImage>
+                      <Image
+                        src={store.image_url ??
+                        'https://source.unsplash.com/600x600/?food'}
+                        alt={'food_img'}
+                        width={120} height={120}
+                        centered
+                      />
+                    </StoreImage>
+                    <StoreInfo>
+                      <h4>{store.name}</h4>
+                      <StoreDesc>{store.description}</StoreDesc>
+                    </StoreInfo>
                   </MainBox>
                 </Link>
               )
@@ -115,7 +122,7 @@ const StoreTypesList = styled.div`
   @media only screen and (max-width: ${({ theme }) => theme.breakpoint.m}) {
     grid-template-columns: repeat(8, 1fr);
   }
-  
+
   @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -148,7 +155,10 @@ const MainBox = styled.div`
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
   padding: 25px 24px 25px;
   transition: all 200ms;
-  text-align: center;
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
 
   &:hover {
     transform: translateY(-5px);
@@ -160,9 +170,26 @@ const MainBox = styled.div`
     font-size: 12px;
     margin: 5px 0 0;
   }
+`
 
-  p {
-    font-size: 35px;
-    margin: auto;
-  }
+const StoreImage = styled.div`
+  flex-shrink: 0;
+  margin-right: 12px;
+`
+
+const StoreInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+`
+
+const StoreDesc = styled.p`
+  font-size: 14px;
+  color: gray;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `

@@ -62,7 +62,7 @@ const RecommendMenu = () => {
     try {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API}/menu/recommend`)
-      setMenus(res)
+      setMenus(res.data)
     } catch (err) {
       alert('추천 메뉴 목록을 불러오는데 실패했습니다.')
     }

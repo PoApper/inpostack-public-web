@@ -1,23 +1,27 @@
-import { useRouter } from 'next/router'
-import Layout from '../../components/layout'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
+
+import Layout from '../../components/layout'
 import MenuGrid from '../../components/menu/menuGrid'
 import StoreInfoDiv from '../../components/store/storeInfoDiv'
 
 const StorePage = () => {
   const router = useRouter()
+  const { store_name } = router.query
   const [storeWithAll, setStoreWithAll] = useState()
 
   useEffect(async () => {
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/store/name/${router.query.store_name}?category=true&menu=true`)
-      setStoreWithAll(res.data)
+      if (store_name) {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/store/name/${store_name}?category=true&menu=true`)
+        setStoreWithAll(res.data)
+      }
     } catch (err) {
       alert('가게 정보를 불러오는데 실패했습니다.')
     }
-  }, [router.query.store_name])
+  }, [store_name])
 
   console.log(storeWithAll)
 

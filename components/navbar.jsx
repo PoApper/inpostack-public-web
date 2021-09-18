@@ -1,24 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Button, Dropdown, Icon, Image, Menu, Search } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
+import axios from 'axios'
 
-import useUser from '../data/useUser'
-import { logout } from '../requests/userApi'
 import { InPoStackText } from './common/title'
 
 const Navbar = () => {
-  const { user, loading } = useUser()
+  const router = useRouter()
+  const [user, setUser] = useState()
+
+  useEffect(async () => {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API}/auth/verifyToken`,
+      { withCredentials: true })
+    setUser(res.data)
+  })
+
   // const [menuFixed, setMenuFixed] = useState(false)
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+  const handleLogout = async () => {
+    try {
+      axios.get(`${process.env.NEXT_PUBLIC_API}/auth/logout`, {
+        withCredentials: true,
+      })
+      alert('로그아웃 되었습니다.')
+      router.push('/')
+    } catch (err) {
+      alert('로그아웃에 실패했습니다.')
+      console.log(err)
+    }
+  }
 
   return (
     <_Navbar>
       {
         isTabletOrMobile ? (
-          <MobileNavbar user={user}/>
-        ) : <PCNavbar user={user}/>
+          <MobileNavbar user={user} handleLogout={handleLogout}/>
+        ) : <PCNavbar user={user} handleLogout={handleLogout}/>
       }
     </_Navbar>
   )
@@ -28,6 +49,7 @@ export default Navbar
 
 const PCNavbar = (props) => {
   const user = props.user
+  const handleLogout = props.handleLogout
 
   return (
     <NavbarWrapper>
@@ -54,21 +76,21 @@ const PCNavbar = (props) => {
           user ?
             <Menu.Item position={'right'}>
               <Dropdown item simple
-                        text={`[${user.account_type}] ${user.name} (${user.id})`}>
+                        text={`${user.name}님`}>
                 <Dropdown.Menu style={{
                   border: 'none',
                   boxShadow: '0 2px 5px 0px rgba(0, 0, 0, 0.2)',
                 }}>
-                  <Dropdown.Item text={'로그아웃'} onClick={() => {
-                    logout()
-                  }}/>
+                  <Dropdown.Item text={'로그아웃'} onClick={handleLogout}/>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Item>
             :
             <Menu.Item position={'right'}>
               <Button style={{ border: 'none', background: 'none' }}
-                      href={'/login'}>로그인</Button>
+                      href={`${process.env.NEXT_PUBLIC_API}/auth/login?redirect=https://inpo.poapper.com`}>
+                로그인
+              </Button>
             </Menu.Item>
         }
       </NavbarMenu>

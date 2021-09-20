@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import { Button, Grid, Icon, Image } from 'semantic-ui-react'
+import { Button, Grid, Icon } from 'semantic-ui-react'
 import { InPoStackText } from '../common/title'
 
 const CardDiv = () => {
@@ -20,14 +20,13 @@ const CardDiv = () => {
                     가게 목록 <Icon name={'arrow right'}/>
                   </CardButton>
                 </CardTextDiv>
-                <Image centered src={'/inpostack-logo.svg'} alt="logo"
-                       style={{
-                         height: '160px',
-                         float: 'right',
-                         marginRight: '80px',
-                         marginTop: '-60px',
-                       }}
-                />
+                <div style={{ flex: 1, textAlign: 'center' }}>
+                  <img
+                    src={'/inpostack-logo.svg'}
+                    alt="logo"
+                    height={160}
+                  />
+                </div>
               </CardBox>
             </Link>
           </Grid.Column>
@@ -43,11 +42,13 @@ const CardDiv = () => {
                     In POSTECH? <Icon name={'arrow right'}/>
                   </CardButton>
                 </CardTextDiv>
-                <Image
-                  src={'https://popo.poapper.com/static/media/jigok.a2009d3b.jpg'}
-                  height={160}
-                  style={{ float: 'right', marginTop: '-60px' }}
-                />
+                <div style={{ flex: 1, textAlign: 'center' }}>
+                  <img
+                    src={'https://popo.poapper.com/static/media/jigok.a2009d3b.jpg'}
+                    alt={'jigok'}
+                    height={160}
+                  />
+                </div>
               </CardBox>
             </Link>
           </Grid.Column>
@@ -70,6 +71,13 @@ const CardButton = styled(Button)`
 `
 
 const CardBox = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.m}) {
+    flex-direction: column;
+  }
+
   border-radius: 14px;
   background-color: #fff;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { Button, Dropdown, Icon, Image, Menu, Search } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
@@ -9,7 +8,6 @@ import axios from 'axios'
 import { InPoStackText } from './common/title'
 
 const Navbar = () => {
-  const router = useRouter()
   const [user, setUser] = useState()
 
   useEffect(async () => {
@@ -27,7 +25,7 @@ const Navbar = () => {
         withCredentials: true,
       })
       alert('로그아웃 되었습니다.')
-      router.push('/')
+      window.location.reload()
     } catch (err) {
       alert('로그아웃에 실패했습니다.')
       console.log(err)
@@ -69,7 +67,9 @@ const PCNavbar = (props) => {
         </Link>
         <SearchWrapper>
           <Search
+            value={""}
             input={{ fluid: true }}
+            placeholder={'coming soon... 👨‍🚀'}
           />
         </SearchWrapper>
         {
@@ -99,8 +99,8 @@ const PCNavbar = (props) => {
   )
 }
 
-const MobileNavbar = (props) => {
-  const user = props.user
+const MobileNavbar = () => {
+  // const user = props.user
   const [showBottomBar, setShowBottomBar] = useState(false)
 
   return (
@@ -126,7 +126,12 @@ const MobileNavbar = (props) => {
         showBottomBar ? (
           <BottomMenu text vertical>
             <Menu.Item>
-              <Search size="mini" input={{ fluid: true }}/>
+              <Search
+                size="mini"
+                value={""}
+                placeholder={'coming soon... 👨‍🚀'}
+                input={{ fluid: true }}
+              />
             </Menu.Item>
             <Menu.Item>
               전체 가게 보기

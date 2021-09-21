@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import styled from 'styled-components'
 import axios from 'axios'
 import { Icon, Image } from 'semantic-ui-react'
@@ -24,16 +25,18 @@ const RecommendStore = () => {
           {
             stores.map(store => {
               return (
-                <MainBox key={store.uuid}>
-                  <Image
-                    src={store.image_url ??
-                    'https://source.unsplash.com/600x600/?food'}
-                    atl={'store_img'}
-                    width={120} height={120}
-                    centered
-                  />
-                  <h3>{store.name}</h3>
-                </MainBox>
+                <Link href={`/store/${store.name}`} key={store.uuid}>
+                  <MainBox>
+                    <Image
+                      src={store.image_url ??
+                      'https://source.unsplash.com/600x600/?food'}
+                      atl={'store_img'}
+                      width={120} height={120}
+                      centered
+                    />
+                    <h3>{store.name}</h3>
+                  </MainBox>
+                </Link>
               )
             })
           }
@@ -76,16 +79,18 @@ const RecommendMenu = () => {
           {
             menus.map(menu => {
               return (
-                <MainBox key={menu.uuid}>
-                  <Image
-                    src={menu.image_url ??
-                    'https://source.unsplash.com/600x600/?food'}
-                    alt={'food_img'}
-                    width={120} height={120}
-                    centered
-                  />
-                  <h3>{menu.name}</h3>
-                </MainBox>
+                <Link href={`/store/${menu.store_name}`} key={menu.uuid}>
+                  <MainBox>
+                    <Image
+                      src={menu.image_url ??
+                      'https://source.unsplash.com/600x600/?food'}
+                      alt={'food_img'}
+                      width={120} height={120}
+                      centered
+                    />
+                    <h3>{menu.name}</h3>
+                  </MainBox>
+                </Link>
               )
             })
           }
@@ -134,6 +139,7 @@ const MainBox = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-5px);
@@ -154,7 +160,7 @@ const MainBox = styled.div`
 
 const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   align-items: stretch;
 

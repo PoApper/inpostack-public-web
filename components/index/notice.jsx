@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import { Grid } from 'semantic-ui-react'
+import ReactMarkdown from 'react-markdown'
 
 const Notice = () => {
   const getOverviewElement = ({ header, content }) => {
     return <Grid.Column>
       <MainBox>
         <h3>{header}</h3>
-        <p>{content}</p>
+        <p><ReactMarkdown>{content}</ReactMarkdown></p>
       </MainBox>
     </Grid.Column>
   }
@@ -17,14 +18,20 @@ const Notice = () => {
       <Grid stackable>
         <Grid.Row stretched>
           {getOverviewElement({
+            header: '인포스택 피드백을 받습니다',
+            content: '👉[이곳](https://forms.gle/Bs5ws9vwrFfkYjT39)👈에서 베타 버전에 대한 피드백을 받고 있습니다 😉',
+          })}
+        </Grid.Row>
+        <Grid.Row stretched>
+          {getOverviewElement({
             header: '인포스택 리뉴얼!',
-            content: 'InPoStack이 새단장 하여 오픈하였습니다! (9월 3일 🎉🎊)\n',
+            content: 'InPoStack이 새단장 하여 오픈하였습니다! (9월 25일 🎉🎊)',
           })}
         </Grid.Row>
         <Grid.Row stretched>
           {getOverviewElement({
             header: '2021-2학기 개강',
-            content: '9월 6일, 2021-2학기가 시작됩니다. 코로나로 인해 비대면으로 개강합니다.',
+            content: '9월 6일, 2021-2학기가 시작됩니다. 코로나19로 인해 비대면으로 개강합니다.',
           })}
         </Grid.Row>
       </Grid>

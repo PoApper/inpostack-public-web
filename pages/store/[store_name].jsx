@@ -5,6 +5,7 @@ import axios from 'axios'
 import Layout from '../../components/layout'
 import MenuGrid from '../../components/menu/menuGrid'
 import StoreInfoDiv from '../../components/store/storeInfoDiv'
+import ReviewList from '../../components/store/reviewList'
 
 const StorePage = () => {
   const router = useRouter()
@@ -32,6 +33,7 @@ const StorePage = () => {
           <>
             <StoreInfoDiv storeInfo={storeWithAll}/>
             <MenuGrid categoriesWithMenu={storeWithAll.category}/>
+            <ReviewList store={storeWithAll}/>
           </>
         ) : (
           <>

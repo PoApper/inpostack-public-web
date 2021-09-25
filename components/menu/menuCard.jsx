@@ -1,9 +1,46 @@
 import styled from 'styled-components'
+import { Button, Icon } from 'semantic-ui-react'
+import axios from 'axios'
 
 // TODO: show menu like/hate
 
 const MenuCard = (props) => {
   const menu = props.menu
+
+  const thumbsUp = async () => {
+    try {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API}/menu/${menu.uuid}/5`,
+        {}, { withCredentials: true })
+      alert('평가가 반영되었습니다!')
+      window.location.reload()
+    } catch (err) {
+      const status = err.response.status
+      if (status === 403) {
+        alert('로그인 후 평가해주세요!')
+      } else {
+        alert('메뉴를 평가하는데 실패했습니다')
+      }
+      console.log(err)
+    }
+
+  }
+
+  const thumbsDown = async () => {
+    try {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API}/menu/${menu.uuid}/0`,
+        {}, { withCredentials: true })
+      alert('평가가 반영되었습니다!')
+      window.location.reload()
+    } catch (err) {
+      const status = err.response.status
+      if (status === 403) {
+        alert('로그인 후 평가해주세요!')
+      } else {
+        alert('메뉴를 평가하는데 실패했습니다')
+      }
+      console.log(err)
+    }
+  }
 
   return (
     <CardDiv key={menu.uuid}>
@@ -15,14 +52,21 @@ const MenuCard = (props) => {
         <PriceText>
           {menu.price.toLocaleString()}원
         </PriceText>
-        <Rating>
-          {/*  /!*<FaThumbsUp color="red"/> {menu.like}*!/*/}
-          &nbsp;&nbsp;
-          {/*  /!*<FaThumbsDown color="blue"/> {menu.hate}*!/*/}
-        </Rating>
+        <div>
+          <Button basic size="mini">
+            <Icon name={'thumbs up outline'} color="red"
+                  onClick={thumbsUp}/>
+            {menu.like}
+          </Button>
+          <Button basic size="mini">
+            <Icon name={'thumbs down outline'} color="blue"
+                  onClick={thumbsDown}/>
+            {menu.hate}
+          </Button>
+        </div>
       </InfoColumn>
       <ImageColumn>
-        <img src={menu.image_url ?? "https://via.placeholder.com/100"}
+        <img src={menu.image_url ?? 'https://via.placeholder.com/100'}
              alt={`${menu.name}_photo`}
              width={100} height={100}
              style={{ marginBottom: '0.6rem' }}/>
@@ -55,12 +99,11 @@ const MenuText = styled.h4`
 
 const PriceText = styled.p`
   font-weight: 700;
-  font-size: 14px;
-  margin: 0;
+  font-size: 16px;
 `
 
 const DescriptionText = styled.p`
-  margin: 0;
+  flex: 1;
   color: grey;
 `
 
@@ -71,11 +114,4 @@ const InfoColumn = styled.div`
 
 const ImageColumn = styled.div`
   margin-left: auto;
-`
-
-const Rating = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 0.4rem;
 `

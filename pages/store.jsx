@@ -24,7 +24,7 @@ const Store = () => {
       <Title>가게 목록</Title>
       <StoreTypesList>
         <LogoDiv onClick={() => setStoreType('all')}>
-          <StoreLogoImg src={'/inpostack-logo.svg'}/>
+          <StoreLogoImg src={'store_logo/all.svg'}/>
           <p>전체보기</p>
         </LogoDiv>
         <LogoDiv onClick={() => setStoreType('KOREAN_STEW')}>

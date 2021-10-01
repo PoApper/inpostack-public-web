@@ -53,9 +53,6 @@ const BurgerkingTime = (hour, min) => {
 }
 
 const BlueHillTime = (hour, min) => {
-  // COVID-19 CLOSED
-  return Closed()
-  /*
   var open = 0
   if(hour>=11 && hour<13){
     open = 1
@@ -69,7 +66,6 @@ const BlueHillTime = (hour, min) => {
   else {
     return <Label size='tiny' color='red'>Close</Label>
   }
-  */
 }
 
 const MatkkiTime = (hour, min) => {
@@ -149,9 +145,7 @@ const InPostech = () => {
             <h3>그여든 take out</h3>
             {HaksikTime(hour, min)}
           </Subject>
-        <h4>조식: 07:30 - 09:30</h4>
-        <h4>중식: 11:30 - 13:30</h4>
-        <h4>석식: 17:30 - 19:00</h4>
+        <h4>11:30 - 13:30</h4>
         </div>
       </GYD>
       <Nearme>

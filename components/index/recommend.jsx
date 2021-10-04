@@ -6,12 +6,16 @@ import { Icon, Image } from 'semantic-ui-react'
 
 const RecommendStore = () => {
   const [stores, setStores] = useState([])
+  const [randStore, setRandStore] = useState({})
 
   useEffect(async () => {
     try {
-      const res = await axios.get(
+      const res1 = await axios.get(
         `${process.env.NEXT_PUBLIC_API}/store/recommend`)
-      setStores(res.data)
+      setStores(res1.data)
+      const res2 = await axios.get(
+        `${process.env.NEXT_PUBLIC_API}/store/random`)
+      setRandStore(res2.data[0])
     } catch (err) {
       alert('추천 가게 목록을 불러오는데 실패했습니다.')
     }
@@ -40,15 +44,17 @@ const RecommendStore = () => {
               )
             })
           }
-          <MainBox key={'random'}>
-            <Icon
-              circular
-              name={'random'} size={'big'}
-              className={'box bounce-distortion inpostack-red2'}
-              style={{ margin: 'auto' }}
-            />
-            <h3>Random Pick</h3>
-          </MainBox>
+          <Link href={`/store/${randStore.name}`} key={randStore.uuid}>
+            <MainBox>
+              <Icon
+                circular
+                name={'random'} size={'big'}
+                className={'box bounce-distortion inpostack-red2'}
+                style={{ margin: 'auto' }}
+              />
+              <h3>Random Pick</h3>
+            </MainBox>
+          </Link>
         </CardContainer>
       </div>
     )
@@ -60,16 +66,22 @@ const RecommendStore = () => {
 
 const RecommendMenu = () => {
   const [menus, setMenus] = useState([])
+  const [randMenu, setRandMenu] = useState({})
 
   useEffect(async () => {
     try {
-      const res = await axios.get(
+      const res1 = await axios.get(
         `${process.env.NEXT_PUBLIC_API}/menu/recommend`)
-      setMenus(res.data)
+      setMenus(res1.data)
+      const res2 = await axios.get(
+        `${process.env.NEXT_PUBLIC_API}/menu/random`)
+      setRandMenu(res2.data[0])
     } catch (err) {
       alert('추천 메뉴 목록을 불러오는데 실패했습니다.')
     }
   }, [])
+
+  console.log(randMenu);
 
   if (menus.length) {
     return (
@@ -94,15 +106,17 @@ const RecommendMenu = () => {
               )
             })
           }
-          <MainBox key={'random'}>
-            <Icon
-              circular
-              name={'random'} size={'big'}
-              className={'box bounce-distortion inpostack-blue2'}
-              style={{ margin: 'auto' }}
-            />
-            <h3>Random Pick</h3>
-          </MainBox>
+          <Link href={`/store/${randMenu.store_name}`} key={randMenu.uuid}>
+            <MainBox>
+              <Icon
+                circular
+                name={'random'} size={'big'}
+                className={'box bounce-distortion inpostack-blue2'}
+                style={{ margin: 'auto' }}
+              />
+              <h3>Random Pick</h3>
+            </MainBox>
+          </Link>
         </CardContainer>
       </div>
     )

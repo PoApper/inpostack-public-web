@@ -1,39 +1,43 @@
 import styled from 'styled-components'
 import { Grid } from 'semantic-ui-react'
 import ReactMarkdown from 'react-markdown'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Notice = () => {
-  const getOverviewElement = ({ header, content }) => {
-    return <Grid.Column>
-      <MainBox>
-        <h3>{header}</h3>
-        <p><ReactMarkdown>{content}</ReactMarkdown></p>
-      </MainBox>
-    </Grid.Column>
+  const [notices, setNotices] = useState([])
+
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/notice`)
+      setNotices(res.data)
+    } catch (err) {
+      alert(`공지를 불러오는데 실패했습니다.`)
+      console.log(err)
+    }
+  }, [])
+
+  const NoticeRow = ({ title, content }) => {
+    return (
+      <Grid.Row stretched>
+        <Grid.Column>
+          <MainBox>
+            <h3>{title}</h3>
+            <p><ReactMarkdown>{content}</ReactMarkdown></p>
+          </MainBox>
+        </Grid.Column>
+      </Grid.Row>)
   }
 
   return (
     <div>
       <NoticeTitle>안내드립니다!</NoticeTitle>
       <Grid stackable>
-        <Grid.Row stretched>
-          {getOverviewElement({
-            header: '인포스택 피드백을 받습니다',
-            content: '👉[이곳](https://forms.gle/Bs5ws9vwrFfkYjT39)👈에서 베타 버전에 대한 피드백을 받고 있습니다 😉',
-          })}
-        </Grid.Row>
-        <Grid.Row stretched>
-          {getOverviewElement({
-            header: '인포스택 리뉴얼!',
-            content: 'InPoStack이 새단장 하여 오픈하였습니다! (9월 25일 🎉🎊)',
-          })}
-        </Grid.Row>
-        <Grid.Row stretched>
-          {getOverviewElement({
-            header: '2021-2학기 개강',
-            content: '9월 6일, 2021-2학기가 시작됩니다. 코로나19로 인해 비대면으로 개강합니다.',
-          })}
-        </Grid.Row>
+        {
+          notices.map(notice => {
+            return NoticeRow(notice)
+          })
+        }
       </Grid>
     </div>
   )

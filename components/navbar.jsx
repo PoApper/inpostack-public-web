@@ -52,7 +52,7 @@ const PCNavbar = (props) => {
   return (
     <NavbarWrapper>
       <NavbarMenu borderless>
-        <Link href={'/'}>
+        <Link href={'/'} passHref>
           <LogoMenuItem position="left">
             <LogoDiv>
               <div style={{ marginRight: '1.2rem' }}>
@@ -111,7 +111,7 @@ const MobileNavbar = () => {
           <Icon name={'sidebar'}/>
         </Menu.Item>
         <Menu.Item>
-          <Link href={'/'}>
+          <Link href={'/'} passHref>
             <LogoDiv>
               <Image centered src={'/inpostack-logo.svg'} alt="logo"
                      style={{ width: '24px' }}/>

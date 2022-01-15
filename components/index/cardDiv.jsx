@@ -9,7 +9,7 @@ const CardDiv = () => {
       <Grid columns={2} stackable>
         <Grid.Row stretched>
           <Grid.Column>
-            <Link href={'/store'}>
+            <Link href={'/store'} passHref>
               <CardBox>
                 <CardTextDiv>
                   <h2><InPoStackText/>으로 배달 시켜 먹자!</h2>
@@ -31,7 +31,7 @@ const CardDiv = () => {
             </Link>
           </Grid.Column>
           <Grid.Column>
-            <Link href={'/in-postech'}>
+            <Link href={'/in-postech'} passHref>
               <CardBox>
                 <CardTextDiv>
                   <h2>학식, 버거킹 GoGo</h2>

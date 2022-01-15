@@ -3,20 +3,17 @@ import Link from 'next/link'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Image } from 'semantic-ui-react'
+import Layout from '../../components/layout'
 
-import Layout from '../components/layout'
-
-const Store = () => {
+const StoreIndexPage = () => {
   const [stores, setStores] = useState([])
   const [selectedStoreType, setStoreType] = useState('all')
 
-  useEffect(async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/store`)
-      setStores(res.data)
-    } catch (err) {
-      alert('가게 목록을 불러오는데 실패했습니다.')
-    }
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/store`)
+      .then(res => setStores(res.data))
+      .catch(() => alert(`가게 목록을 불러오는데 실패했습니다.`))
   }, [])
 
   return (
@@ -82,7 +79,7 @@ const Store = () => {
             if (selectedStoreType === 'all' || store.store_type ===
               selectedStoreType) {
               return (
-                <Link href={`/store/${store.name}`} key={store.uuid}>
+                <Link href={`/store/${store.name}`} key={store.uuid} passHref>
                   <MainBox>
                     <StoreImage>
                       <Image
@@ -108,7 +105,7 @@ const Store = () => {
   )
 }
 
-export default Store
+export default StoreIndexPage
 
 const Title = styled.h2`
   letter-spacing: -1px;

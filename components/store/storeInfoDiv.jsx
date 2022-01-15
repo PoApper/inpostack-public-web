@@ -5,8 +5,6 @@ import { Divider, Icon, Image } from 'semantic-ui-react'
 const StoreInfoDiv = (props) => {
   const storeInfo = props.storeInfo;
 
-  console.log(storeInfo)
-
   return (
     <StoreInfoContainer>
       <StoreLogo>

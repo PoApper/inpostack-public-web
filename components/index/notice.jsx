@@ -7,14 +7,11 @@ import axios from 'axios'
 const Notice = () => {
   const [notices, setNotices] = useState([])
 
-  useEffect(async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/notice`)
-      setNotices(res.data)
-    } catch (err) {
-      alert(`공지를 불러오는데 실패했습니다.`)
-      console.log(err)
-    }
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/notice`)
+      .then(res => setNotices(res.data))
+      .catch(() => alert(`공지를 불러오는데 실패했습니다.`))
   }, [])
 
   const NoticeRow = ({ title, content }) => {

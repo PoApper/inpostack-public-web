@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 import Layout from '../components/layout';
-import Recommend from '../components/index/recommend'
 import Notice from '../components/index/notice'
-import { InPoStackText } from '../components/common/title'
 import CardDiv from '../components/index/cardDiv'
+import RecommendDiv from '../components/index/recommendDiv'
+import { InPoStackText } from '../components/common/title'
 
-export default function Home() {
+export default function IndexPage() {
   return (
     <Layout>
       <Title>
         <InPoStackText/> - 행복한 배달 생활의 시작
       </Title>
       <IndexDiv>
-        <Recommend/>
+        <RecommendDiv/>
         <CardDiv/>
         <Notice/>
       </IndexDiv>

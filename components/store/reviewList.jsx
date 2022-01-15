@@ -8,18 +8,13 @@ const ReviewList = (props) => {
   const [review, setReview] = useState()
   const store = props.store
 
-  useEffect(async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/review/store/${store.uuid}`)
-      setReviewList(res.data)
-    } catch (err) {
-      alert('리뷰 목록을 불러오는데 실패했습니다.')
-      console.log(err)
-    }
-  }, store)
-
-  console.log(reviewList)
+  useEffect(() => {
+    if (!store) return;
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/review/store/${store.uuid}`)
+      .then(res => setReviewList(res.data))
+      .catch(() => alert(`리뷰 목록을 불러오는데 실패했습니다.`))
+  }, [store])
 
   const submitReview = async () => {
     console.log('리뷰 제출!!')

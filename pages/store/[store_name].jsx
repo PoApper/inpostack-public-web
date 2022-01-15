@@ -12,16 +12,12 @@ const StorePage = () => {
   const { store_name } = router.query
   const [storeWithAll, setStoreWithAll] = useState()
 
-  useEffect(async () => {
-    try {
-      if (store_name) {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/store/name/${store_name}?category=true&menu=true`)
-        setStoreWithAll(res.data)
-      }
-    } catch (err) {
-      alert('가게 정보를 불러오는데 실패했습니다.')
-    }
+  useEffect(() => {
+    if (!store_name) return;
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/store/name/${store_name}?category=true&menu=true`)
+      .then(res => setStoreWithAll(res.data))
+      .catch(() => alert(`가게 정보를 불러오는데 실패했습니다.`))
   }, [store_name])
 
   console.log(storeWithAll)

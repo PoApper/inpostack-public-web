@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled, { ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 
-import Navbar from './navbar'
+import Navbar from './navbar/navbar'
 import Footer from './footer'
 
 const Layout = ({ children }) => {

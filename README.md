@@ -2,6 +2,8 @@
 
 ## TODO
 
+- better develop env setup
+- More fancy component & css style modularization
 - better verify token method
   - maybe use `swr`?
 - better mobile UX

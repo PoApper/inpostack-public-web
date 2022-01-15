@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import { Button, Dropdown, Image, Menu, Search } from 'semantic-ui-react'
+import { Button, Dropdown, Image, Menu } from 'semantic-ui-react'
 import { InPoStackText } from '../common/title'
 import React from 'react'
 import styled from 'styled-components'
+import NavbarSearch from './navbar.search'
 
 const PCNavbar = (props) => {
   const user = props.user
@@ -24,13 +25,7 @@ const PCNavbar = (props) => {
             </LogoDiv>
           </LogoMenuItem>
         </Link>
-        <SearchWrapper>
-          <Search
-            value={""}
-            input={{ fluid: true }}
-            placeholder={'coming soon... 👨‍🚀'}
-          />
-        </SearchWrapper>
+        <NavbarSearch/>
         {
           user ?
             <Menu.Item position={'right'}>
@@ -93,9 +88,4 @@ const LogoMenuItem = styled(Menu.Item)`
   &:hover {
     background: white !important;
   }
-`
-
-const SearchWrapper = styled.div`
-  margin: auto 0;
-  width: 400px;
 `

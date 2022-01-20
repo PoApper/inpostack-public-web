@@ -22,11 +22,11 @@ const StoreInfoDiv = (props) => {
           <Icon name={"call"} /> {storeInfo.phone}
         </p>
         <p>
-          <Icon name={"home"} /> {storeInfo.address1} {storeInfo.address2}
-          <StoreMap address1={storeInfo.address1} name={storeInfo.name} />
+          <Icon name={"clock"} /> {storeInfo.open_time} ~ {storeInfo.close_time}
         </p>
         <p>
-          <Icon name={"clock"} /> {storeInfo.open_time} ~ {storeInfo.close_time}
+          <Icon name={"home"} /> {storeInfo.address1} {storeInfo.address2}
+          <StoreMap address1={storeInfo.address1} />
         </p>
         <Divider/>
         <p>

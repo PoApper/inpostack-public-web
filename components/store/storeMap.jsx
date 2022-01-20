@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const StoreMap = (props) => {
+const StoreMap = ({ address1 }) => {
     const [mapLoaded, setMapLoaded] = useState(false);
-    const [address1, setAddress1] = useState(props.address1);
-    const [name, setName] = useState(props.name);
 
     useEffect(() => {
       const $script = document.createElement("script");
@@ -41,7 +39,7 @@ const StoreMap = (props) => {
     }, [mapLoaded]);
 
     return(
-      <div id="map" style={{width: "100%", height: "100px", borderRadius: "8px"}}></div>
+      <div id="map" style={{width: "100%", height: "200px", borderRadius: "8px"}}></div>
     );
 }
 

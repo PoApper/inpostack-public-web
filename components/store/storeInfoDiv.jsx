@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Divider, Icon, Image } from 'semantic-ui-react'
+import StoreMap from './storeMap';
 
 const StoreInfoDiv = (props) => {
   const storeInfo = props.storeInfo;
@@ -21,10 +22,11 @@ const StoreInfoDiv = (props) => {
           <Icon name={"call"} /> {storeInfo.phone}
         </p>
         <p>
-          <Icon name={"home"} /> {storeInfo.address1} {storeInfo.address2}
+          <Icon name={"clock"} /> {storeInfo.open_time} ~ {storeInfo.close_time}
         </p>
         <p>
-          <Icon name={"clock"} /> {storeInfo.open_time} ~ {storeInfo.close_time}
+          <Icon name={"home"} /> {storeInfo.address1} {storeInfo.address2}
+          <StoreMap address1={storeInfo.address1} />
         </p>
         <Divider/>
         <p>

@@ -86,6 +86,7 @@ const CardDiv = styled.div`
   border-radius: 10px;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 6%);
 
+  transition: all 200ms;
   &:hover {
     transform: translateY(-3px);
     box-shadow: 3px 11px 28px 4px rgb(0 0 0 / 12%);

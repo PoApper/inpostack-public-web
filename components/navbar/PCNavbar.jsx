@@ -42,7 +42,7 @@ const PCNavbar = (props) => {
             :
             <Menu.Item position={'right'}>
               <Button style={{ border: 'none', background: 'none' }}
-                      href={`${process.env.NEXT_PUBLIC_API}/auth/login?redirect=https://inpo.poapper.com`}>
+                      href={`${process.env.NEXT_PUBLIC_API}/auth/login?redirect=https://inpo.poapper.club`}>
                 로그인
               </Button>
             </Menu.Item>

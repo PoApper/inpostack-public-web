@@ -2,15 +2,29 @@ import styled from 'styled-components'
 import { Button, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 
-// TODO: show favorite as marked
-
 const MenuCard = (props) => {
   const menu = props.menu
 
-  const thumbsUp = () => {
-    axios.patch(`${process.env.NEXT_PUBLIC_API}/menu/favorite/${menu.uuid}`,
+  const addFavorite = () => {
+    axios.post(`${process.env.NEXT_PUBLIC_API}/favorite/menu/${menu.uuid}`,
       {}, { withCredentials: true }).then(() => {
-      alert('즐겨찾기에 추가되었습니다!')
+      alert('즐겨찾기에 추가 되었습니다!')
+      window.location.reload()
+    }).catch(err => {
+      const status = err.response.status
+      if (status === 403) {
+        alert('로그인 후 평가해주세요!')
+      } else {
+        alert('메뉴를 평가하는데 실패했습니다')
+      }
+      console.log(err)
+    })
+  }
+
+  const notFavorite = () => {
+    axios.delete(`${process.env.NEXT_PUBLIC_API}/favorite/menu/${menu.uuid}`,
+        { withCredentials: true }).then(() => {
+      alert('즐겨찾기에서 제거 되었습니다!')
       window.location.reload()
     }).catch(err => {
       const status = err.response.status
@@ -30,8 +44,9 @@ const MenuCard = (props) => {
           {menu.name}
           <Button basic size={'mini'}
                   style={{ padding: '6px', marginLeft: '4px' }}>
-            <Icon name={'star outline'} onClick={thumbsUp} fitted
-                  color={'orange'}/>
+            <Icon fitted color={'orange'}
+                  name={menu.is_favorite ? 'star' : 'star outline'}
+                  onClick={menu.is_favorite ? notFavorite : addFavorite}/>
           </Button>
         </MenuText>
         <DescriptionText>

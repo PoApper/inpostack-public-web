@@ -15,7 +15,7 @@ const MenuCard = (props) => {
       if (status === 403) {
         alert('로그인 후 평가해주세요!')
       } else {
-        alert('메뉴를 평가하는데 실패했습니다')
+        alert('메뉴를 즐겨찾기에 추가하는데 실패했습니다')
       }
       console.log(err)
     })
@@ -31,7 +31,7 @@ const MenuCard = (props) => {
       if (status === 403) {
         alert('로그인 후 평가해주세요!')
       } else {
-        alert('메뉴를 평가하는데 실패했습니다')
+        alert('메뉴를 즐겨찾기에서 제거하는데 실패했습니다')
       }
       console.log(err)
     })

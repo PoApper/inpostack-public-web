@@ -2,68 +2,59 @@ import styled from 'styled-components'
 import { Button, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 
-// TODO: show menu like/hate
-
 const MenuCard = (props) => {
   const menu = props.menu
 
-  const thumbsUp = async () => {
-    try {
-      await axios.patch(`${process.env.NEXT_PUBLIC_API}/menu/${menu.uuid}/5`,
-        {}, { withCredentials: true })
-      alert('평가가 반영되었습니다!')
+  const addFavorite = () => {
+    axios.post(`${process.env.NEXT_PUBLIC_API}/favorite/menu/${menu.uuid}`,
+      {}, { withCredentials: true }).then(() => {
+      alert('즐겨찾기에 추가 되었습니다!')
       window.location.reload()
-    } catch (err) {
+    }).catch(err => {
       const status = err.response.status
       if (status === 403) {
         alert('로그인 후 평가해주세요!')
       } else {
-        alert('메뉴를 평가하는데 실패했습니다')
+        alert('메뉴를 즐겨찾기에 추가하는데 실패했습니다')
       }
       console.log(err)
-    }
-
+    })
   }
 
-  const thumbsDown = async () => {
-    try {
-      await axios.patch(`${process.env.NEXT_PUBLIC_API}/menu/${menu.uuid}/0`,
-        {}, { withCredentials: true })
-      alert('평가가 반영되었습니다!')
+  const notFavorite = () => {
+    axios.delete(`${process.env.NEXT_PUBLIC_API}/favorite/menu/${menu.uuid}`,
+        { withCredentials: true }).then(() => {
+      alert('즐겨찾기에서 제거 되었습니다!')
       window.location.reload()
-    } catch (err) {
+    }).catch(err => {
       const status = err.response.status
       if (status === 403) {
         alert('로그인 후 평가해주세요!')
       } else {
-        alert('메뉴를 평가하는데 실패했습니다')
+        alert('메뉴를 즐겨찾기에서 제거하는데 실패했습니다')
       }
       console.log(err)
-    }
+    })
   }
 
   return (
     <CardDiv key={menu.uuid}>
       <InfoColumn>
-        <MenuText>{menu.name}</MenuText>
+        <MenuText style={{ display: 'flex', alignItems: 'center' }}>
+          {menu.name}
+          <Button basic size={'mini'}
+                  style={{ padding: '6px', marginLeft: '4px' }}>
+            <Icon fitted color={'orange'}
+                  name={menu.is_favorite ? 'star' : 'star outline'}
+                  onClick={menu.is_favorite ? notFavorite : addFavorite}/>
+          </Button>
+        </MenuText>
         <DescriptionText>
           {menu.description}
         </DescriptionText>
         <PriceText>
           {menu.price.toLocaleString()}원
         </PriceText>
-        <div>
-          <Button basic size="mini">
-            <Icon name={'thumbs up outline'} color="red"
-                  onClick={thumbsUp}/>
-            {menu.like}
-          </Button>
-          <Button basic size="mini">
-            <Icon name={'thumbs down outline'} color="blue"
-                  onClick={thumbsDown}/>
-            {menu.hate}
-          </Button>
-        </div>
       </InfoColumn>
       <ImageColumn>
         <img src={menu.image_url ?? 'https://via.placeholder.com/100'}
@@ -87,6 +78,7 @@ const CardDiv = styled.div`
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 6%);
 
   transition: all 200ms;
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 3px 11px 28px 4px rgb(0 0 0 / 12%);

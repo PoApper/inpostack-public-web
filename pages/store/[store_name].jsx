@@ -15,12 +15,11 @@ const StorePage = () => {
   useEffect(() => {
     if (!store_name) return;
     axios
-      .get(`${process.env.NEXT_PUBLIC_API}/store/name/${store_name}?category=true&menu=true`)
+      .get(`${process.env.NEXT_PUBLIC_API}/store/name/${store_name}?category=true&menu=true`,
+        {withCredentials: true})
       .then(res => setStoreWithAll(res.data))
       .catch(() => alert(`가게 정보를 불러오는데 실패했습니다.`))
   }, [store_name])
-
-  console.log(storeWithAll)
 
   return (
     <Layout>

@@ -44,7 +44,7 @@ const CardDiv = () => {
                 </CardTextDiv>
                 <div style={{ flex: 1, textAlign: 'center' }}>
                   <img
-                    src={'https://popo.poapper.com/static/media/jigok.a2009d3b.jpg'}
+                    src={'/in-postech/jigok.jpg'}
                     alt={'jigok'}
                     height={160}
                   />

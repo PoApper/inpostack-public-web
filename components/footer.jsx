@@ -9,7 +9,7 @@ const Footer = () => {
             <Grid.Row colums={3}>
               <Grid.Column>
                 <FooterInfo>
-                  <Alink href="https://club.poapper.com" style={{marginRight:'40px'}}><h5>© 2021 PoApper</h5></Alink>
+                  <Alink href="https://club.poapper.com" style={{marginRight:'40px'}}><h5>© 2022 PoApper</h5></Alink>
                   <Alink href="mailto:poapper@gmail.com">Privacy</Alink>
                 </FooterInfo>
               </Grid.Column>

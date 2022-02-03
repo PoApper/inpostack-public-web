@@ -10,7 +10,7 @@ export default function IndexPage() {
   return (
     <Layout>
       <Title>
-        <InPoStackText/> - 행복한 배달 생활의 시작
+        <InPoStackText/> - 포스테키안의 맛집 리스트
       </Title>
       <IndexDiv>
         <RecommendDiv/>

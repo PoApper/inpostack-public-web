@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <Head>
         <title>InPoStack</title>
-        <meta name="description" content="InPoStack 행복한 배달 생활"/>
+        <meta name="description" content="InPoStack, 포스테키안의 맛집 리스트"/>
         <link rel="icon" href={'/favicon.ico'}/>
       </Head>
       {

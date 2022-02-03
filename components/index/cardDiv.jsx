@@ -12,7 +12,7 @@ const CardDiv = () => {
             <Link href={'/store'} passHref>
               <CardBox>
                 <CardTextDiv>
-                  <h2><InPoStackText/>으로 배달 시켜 먹자!</h2>
+                  <h2>오늘 메뉴는 <InPoStackText/>에서 찾자!</h2>
                   <TagP>
                     #개꿀맛 #이런맛집이?
                   </TagP>

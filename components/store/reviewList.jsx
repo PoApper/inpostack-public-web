@@ -59,5 +59,5 @@ export default ReviewList
 
 const CommentDiv = styled.div`
   width: 100%;
-  margin: 1rem 0;
+  margin: 3rem 0;
 `

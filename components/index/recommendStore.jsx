@@ -5,27 +5,27 @@ import axios from 'axios'
 import { Icon, Image } from 'semantic-ui-react'
 
 const RecommendStore = () => {
-  const [stores, setStores] = useState([])
-  const [randStore, setRandStore] = useState({})
+  const [storeList, setStoreList] = useState([])
+  const [randomStoreList, setRandomStoreList] = useState([])
 
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/store/recommend`)
-      .then(res => setStores(res.data))
+      .then(res => setStoreList(res.data))
       .catch(() => alert(`추천 가게 목록을 불러오는데 실패했습니다.`))
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/store/random`)
-      .then(res => setRandStore(res.data))
-      .catch(() => alert(`랜덤 가게 정보를 불러오는데 실패했습니다.`))
+      .then(res => setRandomStoreList(res.data))
+      .catch(() => alert(`랜덤 가게 목록을 불러오는데 실패했습니다.`))
   }, [])
 
-  if (stores.length) {
+  if (storeList.length && randomStoreList.length) {
     return (
       <div>
         <Title>오늘은 여기 어때요?</Title>
         <CardContainer>
           {
-            stores.map(store => {
+            storeList.map(store => {
               return (
                 <Link href={`/store/${store.name}`} key={store.uuid} passHref>
                   <MainBox>
@@ -42,17 +42,23 @@ const RecommendStore = () => {
               )
             })
           }
-          <Link href={`/store/${randStore.name}`} key={randStore.uuid} passHref>
-            <MainBox>
-              <Icon
-                circular
-                name={'random'} size={'big'}
-                className={'box bounce-distortion inpostack-red2'}
-                style={{ margin: 'auto' }}
-              />
-              <h3>Random Pick</h3>
-            </MainBox>
-          </Link>
+          {
+            randomStoreList.map(randomStore => {
+              return (
+                <Link href={`/store/${randomStore.name}`} key={randomStore.uuid} passHref>
+                  <MainBox>
+                    <Icon
+                      circular
+                      name={'random'} size={'big'}
+                      className={'box bounce-distortion inpostack-red2'}
+                      style={{ margin: 'auto' }}
+                    />
+                    <h3>Random Pick</h3>
+                  </MainBox>
+                </Link>
+              )
+            })
+          }
         </CardContainer>
       </div>
     )

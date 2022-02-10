@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button, Comment, Divider, Form, Header } from 'semantic-ui-react'
 import moment from 'moment'
+import styled from 'styled-components'
 
 const ReviewList = (props) => {
   const [reviewList, setReviewList] = useState([])
-  const [review, setReview] = useState()
+  const [userReview, setUserReview] = useState()
   const store = props.store
 
   useEffect(() => {
@@ -17,10 +18,9 @@ const ReviewList = (props) => {
   }, [store])
 
   const submitReview = async () => {
-    console.log('리뷰 제출!!')
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API}/review/reviewer`, {
-        content: review,
+        content: userReview,
         store_uuid: store.uuid,
       }, { withCredentials: true })
       alert('리뷰가 등록되었습니다!')
@@ -37,7 +37,7 @@ const ReviewList = (props) => {
   }
 
   return (
-    <Comment.Group>
+    <CommentDiv>
       <Header>리뷰</Header>
       <Comment>
         <Comment.Content>
@@ -71,12 +71,17 @@ const ReviewList = (props) => {
       <Form reply onSubmit={submitReview}>
         <Form.TextArea
           placeholder={'인포스택을 이용하고, 리뷰를 남겨보세요! 😁'}
-          onChange={e => setReview(e.target.value)}
+          onChange={e => setUserReview(e.target.value)}
         />
         <Button content="리뷰 게시" labelPosition="left" icon="edit" primary/>
       </Form>
-    </Comment.Group>
+    </CommentDiv>
   )
 }
 
 export default ReviewList
+
+const CommentDiv = styled.div`
+  width: 100%;
+  margin: 1rem 0;
+`

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import { Message } from 'semantic-ui-react'
 
 import Layout from '../../components/layout'
 import MenuGrid from '../../components/menu/menuGrid'
@@ -27,8 +28,23 @@ const StorePage = () => {
         storeWithAll ? (
           <>
             <StoreInfoDiv storeInfo={storeWithAll}/>
+            <Message floating>
+              <Message.Header>📢InPoStack의 맛집을 제보하세요!</Message.Header>
+              <p>
+                가게·메뉴 정보에서 이렇게 <span className={"blurry-text"}>포항공대</span> 흐릿하게 표시된 부분은 InPoStack 데이터베이스에 정보가 없는 부분을 말합니다.
+              </p>
+            </Message>
             <MenuGrid categoriesWithMenu={storeWithAll.category}/>
             <ReviewList store={storeWithAll}/>
+            <Message floating>
+              <Message.Header>알려드립니다</Message.Header>
+              <p>
+                InPoStack은 포항공대 학생들의 제보로 운영되는 맛집 사이트 입니다. 🍴
+                운영에 최선을 다하고 있지만 가게와 메뉴의 최신 정보를 반영하지 못 할 수도 있습니다. 🙏
+                <br/>
+                가게·메뉴 정보 수정 관련 제보는 "InPoStack 정보 수정 요청"에 제보해주시면 감사하겠습니다. 🙌
+              </p>
+            </Message>
           </>
         ) : (
           <>

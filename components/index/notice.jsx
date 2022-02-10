@@ -8,31 +8,27 @@ const Notice = () => {
   const [notices, setNotices] = useState([])
 
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/notice`)
-      .then(res => setNotices(res.data))
-      .catch(() => alert(`공지를 불러오는데 실패했습니다.`))
+    axios.get(`${process.env.NEXT_PUBLIC_API}/notice`).
+      then(res => setNotices(res.data)).
+      catch(() => alert(`공지를 불러오는데 실패했습니다.`))
   }, [])
-
-  const NoticeRow = ({ title, content }) => {
-    return (
-      <Grid.Row stretched>
-        <Grid.Column>
-          <MainBox>
-            <h3>{title}</h3>
-            <p><ReactMarkdown>{content}</ReactMarkdown></p>
-          </MainBox>
-        </Grid.Column>
-      </Grid.Row>)
-  }
 
   return (
     <div>
       <NoticeTitle>안내드립니다!</NoticeTitle>
       <Grid stackable>
         {
-          notices.map(notice => {
-            return NoticeRow(notice)
+          notices.map((notice) => {
+            return (
+              <Grid.Row stretched key={notice.uuid}>
+                <Grid.Column>
+                  <MainBox>
+                    <h3>{notice.title}</h3>
+                    <ReactMarkdown>{notice.content}</ReactMarkdown>
+                  </MainBox>
+                </Grid.Column>
+              </Grid.Row>
+            )
           })
         }
       </Grid>

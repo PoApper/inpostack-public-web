@@ -7,6 +7,7 @@ import Layout from '../../components/layout'
 import MenuGrid from '../../components/menu/menuGrid'
 import StoreInfoDiv from '../../components/store/storeInfoDiv'
 import ReviewList from '../../components/store/reviewList'
+import RecommendStore from '../../components/index/recommendStore'
 
 const StorePage = () => {
   const router = useRouter()
@@ -29,27 +30,24 @@ const StorePage = () => {
           <>
             <StoreInfoDiv storeInfo={storeWithAll}/>
             <Message floating>
-              <Message.Header>📢InPoStack에 맛집을 제보하세요!</Message.Header>
+              <Message.Header>📢InPoStack에 안내드립니다!</Message.Header>
               <p>
-                가게·메뉴 정보에서 이렇게 <span className={"blurry-text"}>포항공대</span>
-                흐릿하게 표시된 부분은 InPoStack 맛집 데이터베이스에 정보가 없는 항목 입니다. 😢
+                InPoStack은 포항공대 학생들의 제보로 운영되는 맛집 사이트 입니다. 🍴
+                운영에 최선을 다하고 있지만 가게와 메뉴의 최신 정보를 반영하지 못 할 수도 있습니다. 🙏
+                가게·메뉴 정보에서 이렇게 <span className={"blurry-text"}>포항공대</span> 흐릿하게
+                표시된 부분은 InPoStack 맛집 데이터베이스에 정보가 없는 항목 입니다. 😢
                 "<a href={process.env.NEXT_PUBLIC_REQUEST_GOOGLE_FORM_URL} target={"_blank"}>InPoStack 맛집 정보 수정 요청</a>"에
                 제보해주시면 감사하겠습니다. 🙌
               </p>
             </Message>
+
             <MenuGrid categoriesWithMenu={storeWithAll.category}/>
+
             <ReviewList store={storeWithAll}/>
-            <Message floating>
-              <Message.Header>알려드립니다</Message.Header>
-              <p>
-                InPoStack은 포항공대 학생들의 제보로 운영되는 맛집 사이트 입니다. 🍴
-                운영에 최선을 다하고 있지만 가게와 메뉴의 최신 정보를 반영하지 못 할 수도 있습니다. 🙏
-                <br/>
-                가게·메뉴 정보 수정 관련 제보는
-                "<a href={process.env.NEXT_PUBLIC_REQUEST_GOOGLE_FORM_URL} target={"_blank"}>InPoStack 정보 수정 요청</a>"에
-                제보해주시면 감사하겠습니다. 🙌
-              </p>
-            </Message>
+
+            <div style={{margin: "3rem 0"}}>
+              <RecommendStore/>
+            </div>
           </>
         ) : (
           <>

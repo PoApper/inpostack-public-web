@@ -22,7 +22,6 @@ const RecommendMenu = () => {
   if (menuList.length && randomMenuList.length) {
     return (
       <div>
-        <Title>이런 메뉴는 어때요?</Title>
         <CardContainer>
           {
             menuList.map(menu => {
@@ -69,10 +68,6 @@ const RecommendMenu = () => {
 }
 
 export default RecommendMenu
-
-const Title = styled.h2`
-  margin-bottom: 1rem;
-`
 
 const MainBox = styled.div`
   border-radius: 14px;

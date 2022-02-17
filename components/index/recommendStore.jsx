@@ -22,7 +22,6 @@ const RecommendStore = () => {
   if (storeList.length && randomStoreList.length) {
     return (
       <div>
-        <Title>오늘은 여기 어때요?</Title>
         <CardContainer>
           {
             storeList.map(store => {
@@ -69,10 +68,6 @@ const RecommendStore = () => {
 }
 
 export default RecommendStore
-
-const Title = styled.h2`
-  margin-bottom: 1rem;
-`
 
 const MainBox = styled.div`
   border-radius: 14px;

@@ -6,11 +6,6 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
 }
 
-a {
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -77,4 +72,9 @@ a {
   30%  { transform: scale(.9,1.1) translateY(-15px); }
   50%  { transform: scale(1,1)    translateY(0); }
   100% { transform: scale(1,1)    translateY(0); }
+}
+
+.blurry-text {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }

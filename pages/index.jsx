@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import Layout from '../components/layout';
+import Layout from '../components/layout'
 import Notice from '../components/index/notice'
 import CardDiv from '../components/index/cardDiv'
 import RecommendDiv from '../components/index/recommendDiv'
 import { InPoStackText } from '../components/common/title'
 import { Message } from 'semantic-ui-react'
 
-export default function IndexPage() {
+export default function IndexPage () {
   return (
     <Layout>
       <Title>
@@ -21,14 +21,16 @@ export default function IndexPage() {
           <p>
             InPoStack은 포항공대 학생들의 제보로 운영되는 맛집 사이트 입니다. 🍴
             여러분이 좋아하는 맛집을 인포스택에 제보하세요! 제보하신 분들 중 추첨을 통해 기프티콘을 드립니다.
-            "<a href={process.env.NEXT_PUBLIC_REQUEST_GOOGLE_FORM_URL} target={"_blank"}>InPoStack 맛집 제보</a>" 링크에
+            &ldquo;<a href={process.env.NEXT_PUBLIC_REQUEST_GOOGLE_FORM_URL}
+                       target={'_blank'} rel={'noreferrer'}>
+            InPoStack 맛집 제보</a>&rdquo; 링크에
             제보해주시면 감사하겠습니다. 🙌
           </p>
         </Message>
         <Notice/>
       </IndexDiv>
     </Layout>
-  );
+  )
 }
 
 const Title = styled.h1`

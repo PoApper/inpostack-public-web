@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import styled from 'styled-components'
-import { Image } from 'semantic-ui-react'
+import { Image, Dropdown } from 'semantic-ui-react'
 import Layout from '../../components/layout'
 import StoreTypeList from '../../components/store/storeTypeList'
 
@@ -77,17 +77,23 @@ const storeList = [
 const StoreIndexPage = () => {
   const [stores, setStores] = useState([])
   const [selectedStoreType, setStoreType] = useState('all')
+  const [order, setOrder] = useState('visit')
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API}/store`)
+      .get(`${process.env.NEXT_PUBLIC_API}/store?order=${order}`)
       .then(res => setStores(res.data))
       .catch(() => alert(`가게 목록을 불러오는데 실패했습니다.`))
-  }, [])
+  })
 
   return (
     <Layout>
-      <Title>가게 목록</Title>
+      <StoreTitle>
+        <Title>가게 목록</Title>
+        <Dropdown placeholder='정렬' selection options={[{key:1, text:'이름순', value:'name'}, {key:2, text:'방문자순', value:'visit'}]} 
+                  onChange={(e, {value}) => setOrder(value?.toString())}
+                  style={{marginBottom: '10px'}}/>
+      </StoreTitle>
       <StoreTypesList>
       {
         storeList.map(store => {
@@ -136,6 +142,11 @@ export default StoreIndexPage
 
 const Title = styled.h2`
   letter-spacing: -1px;
+`
+
+const StoreTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const StoreTypesList = styled.div`

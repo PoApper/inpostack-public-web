@@ -30,8 +30,8 @@ const theme = {
     m: '70rem',
     s: '40rem',
   },
-  footerHeight: '8rem',
-  contentWidth: '80rem',
+  footerHeight: '120px',
+  contentWidth: '800px',
 };
 
 export default theme;

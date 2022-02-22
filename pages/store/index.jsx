@@ -90,7 +90,8 @@ const StoreIndexPage = () => {
     <Layout>
       <StoreTitle>
         <Title>가게 목록</Title>
-        <Dropdown placeholder='정렬' selection options={[{key:1, text:'이름순', value:'name'}, {key:2, text:'방문자순', value:'visit'}]} 
+        <Dropdown selection placeholder='방문자순'
+                  options={[{key:'name', text:'이름순', value:'name'}, {key:'visit', text:'방문자순', value:'visit'}]} 
                   onChange={(e, {value}) => setOrder(value?.toString())}
                   style={{marginBottom: '10px'}}/>
       </StoreTitle>
@@ -98,10 +99,9 @@ const StoreIndexPage = () => {
       {
         storeList.map(store => {
           return(
-            <StoreTypeList onClick={() => setStoreType(store.storeType)}
-                          storeLogo={store.storeLogo} description={store.description}
-                          key={store.description}>
-            </StoreTypeList>
+            <StoreCheck key={store.description} onClick={() => setStoreType(store.storeType)}>
+              <StoreTypeList storeLogo={store.storeLogo} description={store.description} storeType={store.storeType} />
+            </StoreCheck>
           )
         })
       }
@@ -147,6 +147,10 @@ const Title = styled.h2`
 const StoreTitle = styled.div`
   display: flex;
   justify-content: space-between;
+`
+
+const StoreCheck = styled.button`
+  all: unset;
 `
 
 const StoreTypesList = styled.div`

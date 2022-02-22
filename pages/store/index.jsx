@@ -93,7 +93,9 @@ const StoreIndexPage = () => {
         <Dropdown selection placeholder='방문자순'
                   options={[{key:'name', text:'이름순', value:'name'}, {key:'visit', text:'방문자순', value:'visit'}]} 
                   onChange={(e, {value}) => setOrder(value?.toString())}
-                  style={{marginBottom: '10px'}}/>
+                  style={{marginBottom: '10px'}}
+                  value={order}
+                  />
       </StoreTitle>
       <StoreTypesList>
       {

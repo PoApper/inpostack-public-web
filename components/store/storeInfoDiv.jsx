@@ -61,9 +61,9 @@ const StoreInfoDiv = ({ storeInfo }) => {
 
       <StoreImageGrid>
         {
-          [1, 2, 3, 4].map(() => {
-            return (<
-                StoreImageDiv>
+          [1, 2, 3, 4].map((value) => {
+            return (
+              <StoreImageDiv key={value}>
                 <Image
                   src={storeInfo.image_url ??
                     'https://source.unsplash.com/600x600/?food'}

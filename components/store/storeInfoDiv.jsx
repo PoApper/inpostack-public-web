@@ -107,8 +107,12 @@ const StoreHeader = styled.div`
 `
 
 const StoreImageGrid = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   margin-left: -10px;
   margin-right: -10px;
 `

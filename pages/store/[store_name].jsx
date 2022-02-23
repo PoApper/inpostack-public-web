@@ -30,7 +30,7 @@ const StorePage = () => {
           <>
             <StoreInfoDiv storeInfo={storeWithAll}/>
             <Message floating>
-              <Message.Header>📢InPoStack에 안내드립니다!</Message.Header>
+              <Message.Header>📢InPoStack에서 안내드립니다!</Message.Header>
               <p>
                 InPoStack은 포항공대 학생들의 제보로 운영되는 맛집 사이트 입니다. 🍴
                 운영에 최선을 다하고 있지만 가게와 메뉴의 최신 정보를 반영하지 못 할 수도 있습니다. 🙏

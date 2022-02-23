@@ -63,11 +63,14 @@ const CategoryTitle = styled.h3`
 
 const MenuGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 10px 1rem 20px;
-  grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoint.m}) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  padding: 10px;
 `

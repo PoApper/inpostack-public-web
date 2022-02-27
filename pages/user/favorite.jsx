@@ -9,7 +9,7 @@ const UserFavoritePage = () => {
   const [storeList, setStoreList] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API}/xxx`).
+    axios.get(`${process.env.NEXT_PUBLIC_API}/favorite/store`).
       then(res => setStoreList(res.data)).
       catch((err) => console.log(err))
   })

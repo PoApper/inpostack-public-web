@@ -92,7 +92,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
         </p>
         <p>
           <Icon name={"question circle"} />
-          <a href={process.env.NEXT_PUBLIC_PRESIDENT_GOOGLE_FORM_URL}target={"_blank"} rel={'noreferrer'}>
+          <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}target={"_blank"} rel={'noreferrer'}>
             이 식당의 소유주이신가요?
           </a>
         </p>

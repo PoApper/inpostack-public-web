@@ -36,6 +36,9 @@ const PCNavbar = (props) => {
                   boxShadow: '0 2px 5px 0px rgba(0, 0, 0, 0.2)',
                 }}>
                   <Dropdown.Item text={'로그아웃'} onClick={handleLogout}/>
+                  <Link href={'/user/favorite'} passHref>
+                    <Dropdown.Item text={'관심 가게'}/>
+                  </Link>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Item>

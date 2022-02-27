@@ -90,6 +90,12 @@ const StoreInfoDiv = ({ storeInfo }) => {
         <p>
           <Icon name={'clock'}/> {storeInfo.open_time} ~ {storeInfo.close_time}
         </p>
+        <p>
+          <Icon name={"question circle"} />
+          <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}target={"_blank"} rel={'noreferrer'}>
+            이 식당의 소유주이신가요?
+          </a>
+        </p>
         <Divider/>
         <p>
           {storeInfo.description}

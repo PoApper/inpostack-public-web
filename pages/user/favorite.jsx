@@ -9,10 +9,11 @@ const UserFavoritePage = () => {
   const [storeList, setStoreList] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API}/favorite/store`).
+    axios.get(`${process.env.NEXT_PUBLIC_API}/favorite/store`,
+      { withCredentials: true }).
       then(res => setStoreList(res.data)).
       catch((err) => console.log(err))
-  })
+  }, [])
 
   return (
     <Layout>
@@ -24,32 +25,37 @@ const UserFavoritePage = () => {
               <Image
                 src={'/empty_street.svg'} alt={'empty'}
                 centered size={'large'}/>
-              <h3 style={{textAlign: 'center'}}>
+              <h3 style={{ textAlign: 'center' }}>
                 자주 찾는 가게를 모아보세요!
               </h3>
             </>
           ) : (
-            storeList.map(store => {
-              return (
-                <Link href={`/store/${store.name}`} key={store.uuid} passHref>
-                  <MainBox>
-                    <StoreImage>
-                      <Image
-                        src={store.image_url ??
-                          'https://source.unsplash.com/600x600/?food'}
-                        alt={'food_img'}
-                        width={120} height={120}
-                        centered
-                      />
-                    </StoreImage>
-                    <StoreInfo>
-                      <h4>{store.name}</h4>
-                      <StoreDesc>{store.description}</StoreDesc>
-                    </StoreInfo>
-                  </MainBox>
-                </Link>
-              )
-            })
+            <Grid>
+              {
+                storeList.map(store => {
+                  return (
+                    <Link href={`/store/${store.name}`} key={store.uuid}
+                          passHref>
+                      <MainBox>
+                        <StoreImage>
+                          <Image
+                            src={store.image_url ??
+                              'https://source.unsplash.com/600x600/?food'}
+                            alt={'food_img'}
+                            width={120} height={120}
+                            centered
+                          />
+                        </StoreImage>
+                        <StoreInfo>
+                          <h4>{store.name}</h4>
+                          <StoreDesc>{store.description}</StoreDesc>
+                        </StoreInfo>
+                      </MainBox>
+                    </Link>
+                  )
+                })
+              }
+            </Grid>
           )
         }
       </div>
@@ -58,6 +64,17 @@ const UserFavoritePage = () => {
 }
 
 export default UserFavoritePage
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem;
+  align-items: stretch;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`
 
 const MainBox = styled.div`
   border-radius: 14px;

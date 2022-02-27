@@ -15,7 +15,7 @@ const Navbar = () => {
       `${process.env.NEXT_PUBLIC_API}/auth/verifyToken`,
       { withCredentials: true })
     setUser(res.data)
-  })
+  }, [])
 
   const handleLogout = async () => {
     try {

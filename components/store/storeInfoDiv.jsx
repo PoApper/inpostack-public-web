@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Divider, Icon, Image } from 'semantic-ui-react'
 // import StoreMap from './storeMap';
 import axios from 'axios'
 
 const StoreInfoDiv = ({ storeInfo }) => {
+  const uuid = storeInfo.uuid;
+
+  const [storeImageLinkList, setStoreImageLinkList] = useState([])
+
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/store-image/${uuid}`).
+      then(res => setStoreImageLinkList(res.data)).
+      catch((err) => console.log(err))
+  }, [uuid])
+
   const addFavorite = () => {
     axios.post(
       `${process.env.NEXT_PUBLIC_API}/favorite/store/${storeInfo.uuid}`,
@@ -61,11 +71,11 @@ const StoreInfoDiv = ({ storeInfo }) => {
 
       <StoreImageGrid>
         {
-          [1, 2, 3, 4].map((value) => {
+          storeImageLinkList.map(link => {
             return (
-              <StoreImageDiv key={value}>
+              <StoreImageDiv key={link}>
                 <Image
-                  src={storeInfo.image_url ??
+                  src={link ??
                     'https://source.unsplash.com/600x600/?food'}
                   alt={'food_img'}
                   width={200} height={200}
@@ -92,7 +102,8 @@ const StoreInfoDiv = ({ storeInfo }) => {
         </p>
         <p>
           <Icon name={"question circle"} />
-          <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}target={"_blank"} rel={'noreferrer'}>
+          <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}
+             target={"_blank"} rel={'noreferrer'}>
             이 식당의 소유주이신가요?
           </a>
         </p>

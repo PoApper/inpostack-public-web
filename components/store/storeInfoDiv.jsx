@@ -62,8 +62,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
                   name={storeInfo.is_favorite ? 'star' : 'star outline'}
                   onClick={storeInfo.is_favorite ? notFavorite : addFavorite}/>
             <span style={{ marginLeft: 4 }}>
-              {/* TODO: sync with favorite count */}
-              {Number(3456).toLocaleString()}
+              {Number(storeInfo.favorite_count).toLocaleString()}
             </span>
           </Button>
         </p>

@@ -26,7 +26,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
       if (status === 403) {
         alert('로그인 후 평가해주세요!')
       } else {
-        alert('가게를 즐겨찾기에 추가하는데 실패했습니다')
+        alert('즐겨찾기에 추가하는데 실패했습니다')
       }
       console.log(err)
     })
@@ -43,7 +43,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
       if (status === 403) {
         alert('로그인 후 평가해주세요!')
       } else {
-        alert('가게를 즐겨찾기에서 제거하는데 실패했습니다')
+        alert('즐겨찾기에서 제거하는데 실패했습니다')
       }
       console.log(err)
     })
@@ -52,11 +52,11 @@ const StoreInfoDiv = ({ storeInfo }) => {
   return (
     <div>
       <StoreHeader>
-        <h3 style={{ display: 'flex', alignItems: 'center', fontSize: 32 }}>
+        <h3 style={{ fontSize: 32 }}>
           {storeInfo.name}
         </h3>
 
-        <p style={{ color: 'gray' }}>
+        <div>
           <Button basic>
             <Icon fitted color={'orange'}
                   name={storeInfo.is_favorite ? 'star' : 'star outline'}
@@ -65,7 +65,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
               {Number(storeInfo.favorite_count).toLocaleString()}
             </span>
           </Button>
-        </p>
+        </div>
       </StoreHeader>
 
       <StoreImageGrid>
@@ -92,7 +92,18 @@ const StoreInfoDiv = ({ storeInfo }) => {
           <Icon name={'call'}/> {storeInfo.phone}
         </p>
         <p>
-          <Icon name={'home'}/> {storeInfo.address1} {storeInfo.address2}
+          <Icon name={'home'}/>
+          {
+            storeInfo.naver_map_url ? (
+              <a href={storeInfo.naver_map_url} target={'_blank'} rel={'noreferrer'}>
+                {storeInfo.address1} {storeInfo.address2}
+              </a>
+            ) : (
+              <span>
+                  {storeInfo.address1} {storeInfo.address2}
+                </span>
+            )
+          }
           {/* TODO: 클릭하면 펼쳐보이게 */}
           {/*<StoreMap address1={storeInfo.address1} />*/}
         </p>

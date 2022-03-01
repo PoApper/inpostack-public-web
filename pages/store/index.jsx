@@ -84,7 +84,7 @@ const StoreIndexPage = () => {
       .get(`${process.env.NEXT_PUBLIC_API}/store?order=${order}`)
       .then(res => setStores(res.data))
       .catch(() => alert(`가게 목록을 불러오는데 실패했습니다.`))
-  })
+  }, [order])
 
   return (
     <Layout>

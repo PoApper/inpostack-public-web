@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import axios from 'axios'
 import styled, { ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 
@@ -8,17 +6,6 @@ import Navbar from './navbar/navbar'
 import Footer from './footer'
 
 const Layout = ({ children }) => {
-  const [user, setUser] = useState(null)
-
-  useEffect(async () => {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API}/auth/verifyToken`,
-      { withCredentials: true })
-
-    const _user = res.data
-    setUser(_user)
-  }, [])
-
   return (
     <ThemeProvider theme={theme}>
       <Head>

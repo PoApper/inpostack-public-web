@@ -4,9 +4,10 @@ import { InPoStackText } from '../common/title'
 import React from 'react'
 import styled from 'styled-components'
 import NavbarSearch from './navbar.search'
+import useUser from '../../data/useUser'
 
 const PCNavbar = (props) => {
-  const user = props.user
+  const { user, isLogout } = useUser();
   const handleLogout = props.handleLogout
 
   return (
@@ -27,7 +28,7 @@ const PCNavbar = (props) => {
         </Link>
         <NavbarSearch/>
         {
-          user ?
+          !isLogout ?
             <Menu.Item position={'right'}>
               <Dropdown item simple
                         text={`${user.name}님`}>

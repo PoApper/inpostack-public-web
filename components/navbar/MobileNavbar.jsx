@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 const MobileNavbar = () => {
-  // const user = props.user
+  const { user, isLogout } = useUser();
   const [showBottomBar, setShowBottomBar] = useState(false)
 
   return (

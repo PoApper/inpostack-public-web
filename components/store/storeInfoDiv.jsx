@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { Button, Divider, Icon, Image } from 'semantic-ui-react'
 // import StoreMap from './storeMap';
 import axios from 'axios'
+import { isBlurry } from '../../utils/blurry-check'
 
 const StoreInfoDiv = ({ storeInfo }) => {
-  const uuid = storeInfo.uuid;
+  const uuid = storeInfo.uuid
 
   const [storeImageLinkList, setStoreImageLinkList] = useState([])
 
@@ -89,31 +90,51 @@ const StoreInfoDiv = ({ storeInfo }) => {
 
       <div>
         <p>
-          <Icon name={'call'}/> {storeInfo.phone}
+          <Icon name={'call'}/>
+          {
+            isBlurry(storeInfo.phone) ? (
+              <span className={'blurry-text'}>정보 수집중</span>
+            ) : (
+              <span> {storeInfo.phone}</span>
+            )
+          }
         </p>
         <p>
           <Icon name={'home'}/>
           {
-            storeInfo.naver_map_url ? (
-              <a href={storeInfo.naver_map_url} target={'_blank'} rel={'noreferrer'}>
-                {storeInfo.address1} {storeInfo.address2}
-              </a>
+            isBlurry(storeInfo.address1) ? (
+              <span className={'blurry-text'}>정보 수집중</span>
             ) : (
-              <span>
+              storeInfo.naver_map_url ? (
+                <a href={storeInfo.naver_map_url} target={'_blank'}
+                   rel={'noreferrer'}>
+                  {storeInfo.address1} {storeInfo.address2}
+                </a>
+              ) : (
+                <span>
                   {storeInfo.address1} {storeInfo.address2}
                 </span>
+              )
             )
           }
+
           {/* TODO: 클릭하면 펼쳐보이게 */}
           {/*<StoreMap address1={storeInfo.address1} />*/}
         </p>
         <p>
-          <Icon name={'clock'}/> {storeInfo.open_time} ~ {storeInfo.close_time}
+          <Icon name={'clock'}/>
+          {
+            isBlurry(storeInfo.open_time) || isBlurry(storeInfo.close_time) ? (
+              <span className={'blurry-text'}>정보 수집중</span>
+            ) : (
+              <span>{storeInfo.open_time} ~ {storeInfo.close_time}</span>
+            )
+          }
         </p>
         <p>
-          <Icon name={"question circle"} />
+          <Icon name={'question circle'}/>
           <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}
-             target={"_blank"} rel={'noreferrer'}>
+             target={'_blank'} rel={'noreferrer'}>
             이 식당의 소유주이신가요?
           </a>
         </p>
@@ -139,7 +160,7 @@ const StoreImageGrid = styled.div`
   @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   margin-left: -10px;
   margin-right: -10px;
 `

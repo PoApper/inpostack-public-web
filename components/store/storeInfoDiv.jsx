@@ -76,7 +76,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
               <StoreImageDiv key={link}>
                 <Image
                   src={link ??
-                    'https://source.unsplash.com/600x600/?food'}
+                    'https://via.placeholder.com/200?text=InPoStack'}
                   alt={'food_img'}
                   width={200} height={200}
                 />

@@ -32,7 +32,7 @@ const RecommendStore = ({titleDiv}) => {
                   <MainBox>
                     <Image
                       src={store.image_url ??
-                      'https://source.unsplash.com/600x600/?food'}
+                      'https://via.placeholder.com/200?text=InPoStack'}
                       alt={'store_img'}
                       width={120} height={120}
                       centered

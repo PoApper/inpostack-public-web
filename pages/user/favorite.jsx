@@ -40,7 +40,7 @@ const UserFavoritePage = () => {
                         <StoreImage>
                           <Image
                             src={store.image_url ??
-                              'https://source.unsplash.com/600x600/?food'}
+                              'https://via.placeholder.com/200?text=InPoStack'}
                             alt={'food_img'}
                             width={120} height={120}
                             centered

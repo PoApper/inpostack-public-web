@@ -11,13 +11,13 @@ const RecommendDiv = () => {
       {
         isStoreRecommend ?
           <div>
-            <Title>오늘은 여기 어때요?</Title>
-            <RecommendStore/>
+            <RecommendStore
+              titleDiv={<Title>오늘은 여기 어때요?</Title>}/>
           </div>
           :
           <div>
-            <Title>이런 메뉴는 어때요?</Title>
-            <RecommendMenu/>
+            <RecommendMenu
+              titleDiv={<Title>이런 메뉴는 어때요?</Title>}/>
           </div>
       }
     </div>

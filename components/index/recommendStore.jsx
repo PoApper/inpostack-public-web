@@ -3,8 +3,9 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import axios from 'axios'
 import { Icon, Image } from 'semantic-ui-react'
+import EmptyStore from './empty-store'
 
-const RecommendStore = () => {
+const RecommendStore = ({titleDiv}) => {
   const [storeList, setStoreList] = useState([])
   const [randomStoreList, setRandomStoreList] = useState([])
 
@@ -22,6 +23,7 @@ const RecommendStore = () => {
   if (storeList.length && randomStoreList.length) {
     return (
       <div>
+        {titleDiv}
         <CardContainer>
           {
             storeList.map(store => {
@@ -31,7 +33,7 @@ const RecommendStore = () => {
                     <Image
                       src={store.image_url ??
                       'https://source.unsplash.com/600x600/?food'}
-                      atl={'store_img'}
+                      alt={'store_img'}
                       width={120} height={120}
                       centered
                     />
@@ -62,8 +64,9 @@ const RecommendStore = () => {
       </div>
     )
   } else {
-    // TODO: 가게 없음 Hero 구현할 것
-    return (<></>)
+    return (
+      <EmptyStore/>
+    )
   }
 }
 

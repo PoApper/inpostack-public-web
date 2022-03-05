@@ -3,34 +3,35 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import axios from 'axios'
 import { Icon, Image } from 'semantic-ui-react'
+import EmptyStore from './empty-store'
 
-const RecommendMenu = () => {
+const RecommendMenu = ({ titleDiv }) => {
   const [menuList, setMenuList] = useState([])
   const [randomMenuList, setRandomMenuList] = useState([])
 
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/menu/recommend`)
-      .then(res => setMenuList(res.data))
-      .catch(() => alert(`추천 메뉴 목록을 불러오는데 실패했습니다.`))
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/menu/random`)
-      .then(res => setRandomMenuList(res.data))
-      .catch(() => alert(`랜덤 메뉴 목록을 불러오는데 실패했습니다.`))
+    axios.get(`${process.env.NEXT_PUBLIC_API}/menu/recommend`).
+      then(res => setMenuList(res.data)).
+      catch(() => alert(`추천 메뉴 목록을 불러오는데 실패했습니다.`))
+    axios.get(`${process.env.NEXT_PUBLIC_API}/menu/random`).
+      then(res => setRandomMenuList(res.data)).
+      catch(() => alert(`랜덤 메뉴 목록을 불러오는데 실패했습니다.`))
   }, [])
 
   if (menuList.length && randomMenuList.length) {
     return (
       <div>
+        {titleDiv}
         <CardContainer>
           {
             menuList.map(menu => {
               return (
-                <Link href={`/store/${menu.store_name}`} key={menu.uuid} passHref>
+                <Link
+                  href={`/store/${menu.store_name}`} key={menu.uuid} passHref>
                   <MainBox>
                     <Image
                       src={menu.image_url ??
-                      'https://source.unsplash.com/600x600/?food'}
+                        'https://via.placeholder.com/200?text=InPoStack'}
                       alt={'food_img'}
                       width={120} height={120}
                       centered
@@ -44,7 +45,9 @@ const RecommendMenu = () => {
           {
             randomMenuList.map(randomMenu => {
               return (
-                <Link href={`/store/${randomMenu.store_name}`} key={randomMenu.uuid} passHref>
+                <Link
+                  href={`/store/${randomMenu.store_name}`} key={randomMenu.uuid}
+                  passHref>
                   <MainBox>
                     <Icon
                       circular
@@ -62,8 +65,9 @@ const RecommendMenu = () => {
       </div>
     )
   } else {
-    // TODO: 메뉴 없음 Hero 구현할 것
-    return (<></>)
+    return (
+      <EmptyStore/>
+    )
   }
 }
 

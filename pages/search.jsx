@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { Divider } from 'semantic-ui-react'
+import { Divider, Image } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
+import MenuCard from '../components/menu/menuCard'
 
 const SearchPage = () => {
   const router = useRouter();
   const { query } = router.query
-  const [menuList, setMenuList]= useState([])
   const [storeList, setStoreList] = useState([])
+  const [menuList, setMenuList]= useState([])
 
   useEffect(() => {
     if (!query) return;
@@ -25,50 +26,75 @@ const SearchPage = () => {
 
   return (
     <Layout>
-      <Grid>
+      <p>
+        검색어 &ldquo;{query}&rdquo;에 대한 결과 입니다.
+      </p>
+
+      <h2>가게 검색 결과</h2>
+      <StoreGrid>
         {
           storeList.map(store => {
               return (
-                <Link href={`/store/${store.name}`} key={store.name} passHref>
+                <Link href={`/store/${store.name}`} key={store.name} replace={true} passHref>
                   <MainBox>
-                    <Information>
+                    <StoreImage>
+                      <Image
+                        src={store.image_url ??
+                          'https://via.placeholder.com/200?text=InPoStack'}
+                        alt={'food_img'}
+                        width={120} height={120}
+                        centered
+                      />
+                    </StoreImage>
+                    <StoreInfo>
                       <h4>{store.name}</h4>
                       <StoreDesc>{store.description}</StoreDesc>
-                    </Information>
+                    </StoreInfo>
                   </MainBox>
                 </Link>
               )
           })
         }
-      </Grid>
+      </StoreGrid>
 
       <Divider/>
 
-      <Grid>
+      <h2>메뉴 검색 결과</h2>
+      <MenuGrid>
         {
           menuList.map(menu => {
             return (
-              <Link href={`/store/${menu.name}`} key={menu.name} passHref>
-                <MainBox>
-                  <Information>
-                    <h4>{menu.name}</h4>
-                    <StoreDesc>{menu.description}</StoreDesc>
-                  </Information>
+              <Link href={`/store/${menu.store_name}`} key={menu.name} passHref>
+                <MainBox style={{padding: 10, display: 'flex', flexDirection: 'column'}}>
+                  <MenuCard
+                    menu={menu}
+                    store_name={menu.store_name}
+                  />
                 </MainBox>
               </Link>
             )
           })
         }
-      </Grid>
+      </MenuGrid>
     </Layout>
   )
 }
 
 export default SearchPage
 
-const Grid = styled.div`
+const StoreGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  align-items: stretch;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`
+const MenuGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   align-items: stretch;
 
@@ -100,7 +126,13 @@ const MainBox = styled.div`
   }
 `
 
-const Information = styled.div`
+const StoreImage = styled.div`
+  flex-shrink: 0;
+  margin-right: 12px;
+`
+
+
+const StoreInfo = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;

@@ -6,6 +6,7 @@ import { Divider, Image } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 import MenuCard from '../components/menu/menuCard'
+import Head from 'next/head'
 
 const SearchPage = () => {
   const router = useRouter();
@@ -26,6 +27,9 @@ const SearchPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>가게·메뉴 검색 | InPoStack</title>
+      </Head>
       <p>
         검색어 &ldquo;{query}&rdquo;에 대한 결과 입니다.
       </p>

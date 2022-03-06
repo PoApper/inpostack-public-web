@@ -1,7 +1,8 @@
 import Layout from '../components/layout'
 import styled from 'styled-components'
 import { Button, Icon, Image, Label } from 'semantic-ui-react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import Head from 'next/head'
 
 const Open = () => {
   return <Label size='tiny' color='green' style={{borderRadius:'15px', marginLeft:'5px'}}>Open</Label>
@@ -91,6 +92,9 @@ const InPostech = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>In-POSTECH | InPoStack</title>
+      </Head>
       <Location>지곡회관</Location>
       <div style={{display:'flex', flexWrap:'wrap', justifyContent:'space-around'}}>
         <Haksik>

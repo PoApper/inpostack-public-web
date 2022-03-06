@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Image, Dropdown } from 'semantic-ui-react'
 import Layout from '../../components/layout'
 import StoreTypeList from '../../components/store/storeTypeList'
+import Head from 'next/head'
 
 const storeList = [
   {
@@ -88,6 +89,9 @@ const StoreIndexPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>가게 목록 | InPoStack</title>
+      </Head>
       <StoreTitle>
         <Title>가게 목록</Title>
         <Dropdown selection placeholder='방문자순'

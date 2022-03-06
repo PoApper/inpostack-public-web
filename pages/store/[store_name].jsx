@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { Message } from 'semantic-ui-react'
@@ -8,6 +8,7 @@ import MenuGrid from '../../components/menu/menuGrid'
 import StoreInfoDiv from '../../components/store/storeInfoDiv'
 import ReviewList from '../../components/store/reviewList'
 import RecommendStore from '../../components/index/recommendStore'
+import Head from 'next/head'
 
 const StorePage = () => {
   const router = useRouter()
@@ -25,6 +26,9 @@ const StorePage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>{store_name} | InPoStack</title>
+      </Head>
       {
         storeWithAll ? (
           <>

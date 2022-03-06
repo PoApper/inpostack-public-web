@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 
 import Layout from '../components/layout'
+import Head from 'next/head'
+import React from 'react'
 
 const Register = () => {
   const router = useRouter()
@@ -20,6 +22,9 @@ const Register = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>회원가입 | InPoStack</title>
+      </Head>
       <h1>InPoStack - 회원가입</h1>
       <Form onSubmit={handleRegister}>
         <Form.Button>

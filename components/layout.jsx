@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import styled, { ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 
@@ -8,11 +7,6 @@ import Footer from './footer'
 const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Head>
-        <title>InPoStack</title>
-        <meta name="description" content="InPoStack, 포스테키안의 맛집 리스트"/>
-        <link rel="icon" href={'/favicon.ico'}/>
-      </Head>
       {
         <>
           <Navbar/>

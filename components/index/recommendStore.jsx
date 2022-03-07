@@ -6,8 +6,8 @@ import { Icon, Image } from 'semantic-ui-react'
 import EmptyStore from './empty-store'
 
 const RecommendStore = ({titleDiv}) => {
-  const [storeList, setStoreList] = useState([])
-  const [randomStoreList, setRandomStoreList] = useState([])
+  const [storeList, setStoreList] = useState()
+  const [randomStoreList, setRandomStoreList] = useState()
 
   useEffect(() => {
     axios
@@ -19,6 +19,15 @@ const RecommendStore = ({titleDiv}) => {
       .then(res => setRandomStoreList(res.data))
       .catch(() => alert(`랜덤 가게 목록을 불러오는데 실패했습니다.`))
   }, [])
+
+  if (!storeList || !randomStoreList) {
+    return (
+      <div>
+        {titleDiv}
+        <div style={{height: 250}}/>
+      </div>
+    )
+  }
 
   if (storeList.length && randomStoreList.length) {
     return (

@@ -6,8 +6,8 @@ import { Icon, Image } from 'semantic-ui-react'
 import EmptyStore from './empty-store'
 
 const RecommendMenu = ({ titleDiv }) => {
-  const [menuList, setMenuList] = useState([])
-  const [randomMenuList, setRandomMenuList] = useState([])
+  const [menuList, setMenuList] = useState()
+  const [randomMenuList, setRandomMenuList] = useState()
 
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API}/menu/recommend`).
@@ -17,6 +17,15 @@ const RecommendMenu = ({ titleDiv }) => {
       then(res => setRandomMenuList(res.data)).
       catch(() => alert(`랜덤 메뉴 목록을 불러오는데 실패했습니다.`))
   }, [])
+
+  if (!menuList || !randomMenuList) {
+    return (
+      <div>
+        {titleDiv}
+        <div style={{height: 250}}/>
+      </div>
+    )
+  }
 
   if (menuList.length && randomMenuList.length) {
     return (

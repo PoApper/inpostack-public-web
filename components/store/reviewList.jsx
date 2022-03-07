@@ -33,7 +33,7 @@ const ReviewList = (props) => {
       {
         reviewList.map(review => {
           return (
-            <Comment key={review.uuid}>
+            <Comment key={review.uuid} style={{marginTop: 8}}>
               <Comment.Content>
                 <Comment.Text>
                   {review.content}

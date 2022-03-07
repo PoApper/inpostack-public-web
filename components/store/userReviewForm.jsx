@@ -1,11 +1,11 @@
-import { Button, Form } from 'semantic-ui-react'
-import axios from 'axios'
 import { useState } from 'react'
+import axios from 'axios'
+import { Button, Form } from 'semantic-ui-react'
 
-const UserReviewForm = () => {
+const UserReviewForm = ({ store }) => {
   const [userReviewText, setUserReviewText] = useState('')
 
-  async function submitReview ({ store }) {
+  async function submitReview () {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API}/review/reviewer`, {
         content: userReviewText,

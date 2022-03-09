@@ -11,15 +11,6 @@ const CardDiv = () => {
           <Grid.Column>
             <Link href={'/store'} passHref>
               <CardBox>
-                <CardTextDiv>
-                  <h2>오늘 메뉴는 <InPoStackText/>에서 찾자!</h2>
-                  <TagP>
-                    #개꿀맛 #이런맛집이?
-                  </TagP>
-                  <CardButton>
-                    가게 목록 <Icon name={'arrow right'}/>
-                  </CardButton>
-                </CardTextDiv>
                 <CardImgDiv>
                   <img
                     src={'/inpostack-logo-whitebg.png'}
@@ -27,21 +18,25 @@ const CardDiv = () => {
                     style={{width:"100%", height:"100%", objectFit: "cover"}}
                   />
                 </CardImgDiv>
+
+                <CardTextDiv>
+                  <h2 style={{margin: 0}}>
+                    오늘 메뉴는 <InPoStackText/>에서 찾자!
+                  </h2>
+                  <TagP>
+                    #개꿀맛 #이런맛집이?
+                  </TagP>
+                  <CardButton>
+                    가게 목록 <Icon name={'arrow right'}/>
+                  </CardButton>
+                </CardTextDiv>
+
               </CardBox>
             </Link>
           </Grid.Column>
           <Grid.Column>
             <Link href={'/in-postech'} passHref>
               <CardBox>
-                <CardTextDiv>
-                  <h2>학식, 버거킹 GoGo</h2>
-                  <TagP>
-                    #근본와퍼 #가성비ㅅㅌㅊ
-                  </TagP>
-                  <CardButton>
-                    In POSTECH? <Icon name={'arrow right'}/>
-                  </CardButton>
-                </CardTextDiv>
                 <CardImgDiv>
                   <img
                     src={'/in-postech/jigok.jpg'}
@@ -49,6 +44,19 @@ const CardDiv = () => {
                     style={{width:"100%", height:"100%", objectFit: "cover"}}
                   />
                 </CardImgDiv>
+
+                <CardTextDiv>
+                  <h2 style={{margin: 0}}>
+                    학식, 버거킹 GoGo
+                  </h2>
+                  <TagP>
+                    #근본와퍼 #가성비ㅅㅌㅊ
+                  </TagP>
+                  <CardButton>
+                    In POSTECH? <Icon name={'arrow right'}/>
+                  </CardButton>
+                </CardTextDiv>
+
               </CardBox>
             </Link>
           </Grid.Column>
@@ -88,11 +96,11 @@ const CardImgDiv = styled.div`
   height: 250px;
 
   margin: 0 auto;
-
+  
   overflow: hidden;
 `
 
 const TagP = styled.p`
   color: grey;
-  margin: 7px 0px 7px;
+  margin-top: 0;
 `

@@ -20,13 +20,13 @@ const CardDiv = () => {
                     가게 목록 <Icon name={'arrow right'}/>
                   </CardButton>
                 </CardTextDiv>
-                <div style={{ flex: 1, textAlign: 'center' }}>
+                <CardImgDiv>
                   <img
-                    src={'/inpostack-logo.svg'}
+                    src={'/inpostack-logo-whitebg.png'}
                     alt="logo"
-                    height={160}
+                    style={{width:"100%", height:"100%", objectFit: "cover"}}
                   />
-                </div>
+                </CardImgDiv>
               </CardBox>
             </Link>
           </Grid.Column>
@@ -36,19 +36,19 @@ const CardDiv = () => {
                 <CardTextDiv>
                   <h2>학식, 버거킹 GoGo</h2>
                   <TagP>
-                    #근본와퍼 #가성비ㅅㅌㅊ #포식이
+                    #근본와퍼 #가성비ㅅㅌㅊ
                   </TagP>
                   <CardButton>
                     In POSTECH? <Icon name={'arrow right'}/>
                   </CardButton>
                 </CardTextDiv>
-                <div style={{ flex: 1, textAlign: 'center' }}>
+                <CardImgDiv>
                   <img
                     src={'/in-postech/jigok.jpg'}
                     alt={'jigok'}
-                    height={160}
+                    style={{width:"100%", height:"100%", objectFit: "cover"}}
                   />
-                </div>
+                </CardImgDiv>
               </CardBox>
             </Link>
           </Grid.Column>
@@ -61,7 +61,7 @@ const CardDiv = () => {
 export default CardDiv
 
 const CardTextDiv = styled.div`
-  padding: 0.5rem;
+  padding: 25px 24px 25px;
 `
 
 const CardButton = styled(Button)`
@@ -72,19 +72,27 @@ const CardButton = styled(Button)`
 
 const CardBox = styled.div`
   display: flex;
-  flex-direction: row;
-
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.m}) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 
   border-radius: 14px;
   background-color: #fff;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
-  padding: 25px 24px 25px;
   cursor: pointer;
+
+  overflow: hidden;
+  margin: 0;
+`
+
+const CardImgDiv = styled.div`
+  width: 100%;
+  height: 250px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
 `
 
 const TagP = styled.p`
   color: grey;
+  margin: 7px 0px 7px;
 `

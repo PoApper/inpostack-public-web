@@ -9,6 +9,10 @@ import StoreTypeLogo from '../../components/store/storeTypeLogo'
 import { textLengthOverCut } from '../../utils/text-length-over-cut'
 
 import StoreTypeList from '../../assets/StoreTypeList'
+import {
+  StoreRegionColor,
+  StoreRegionKorean,
+} from '../../assets/StoreRegionType'
 
 const StoreIndexPage = () => {
   const [stores, setStores] = useState([])
@@ -77,16 +81,18 @@ const StoreIndexPage = () => {
                         {
                           textLengthOverCut(
                             store.name,
-                            16 - (store.label ? store.label.length + 6 : 0),
+                            store.region ? (14 - store.region.length) : 20,
                             '…'
                           )
                         }
                         {
-                          store.label ? (
-                            <Label className={'ui label'}
-                                  color={'red'}
-                                  style={{marginLeft: 8}}>
-                              {store.label}
+                          store.region ? (
+                            <Label
+                              style={{
+                                marginLeft: 8, color: 'white',
+                                backgroundColor: StoreRegionColor[store.region]
+                            }}>
+                              {StoreRegionKorean[store.region]}
                             </Label>
                           ) : null
                         }

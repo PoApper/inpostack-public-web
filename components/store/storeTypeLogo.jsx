@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StoreTypeList = ({ storeLogo, description }) => {
+const StoreTypeLogo = ({ storeLogo, description }) => {
   return(
   <LogoDiv>
     <StoreLogoImg src={storeLogo} />
@@ -10,7 +10,7 @@ const StoreTypeList = ({ storeLogo, description }) => {
   );
 }
 
-export default StoreTypeList;
+export default StoreTypeLogo;
 
 const LogoDiv = styled.div`
   text-align: center;

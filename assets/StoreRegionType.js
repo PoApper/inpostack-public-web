@@ -1,5 +1,5 @@
 // should be sync with enum defined in API
-export const StoreRegionType = [
+export const StoreRegionTypeOptions = [
   {
     key: 'hyoja',
     value: 'hyo-ja',

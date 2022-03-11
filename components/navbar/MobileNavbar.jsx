@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Icon, Image, Menu, Search } from 'semantic-ui-react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import useUser from '../../data/useUser'
 
 const MobileNavbar = () => {
   const { user, isLogout } = useUser();

@@ -5,17 +5,15 @@ import moment from 'moment'
 import styled from 'styled-components'
 import UserReviewForm from '../store/userReviewForm'
 
-const ReviewList = (props) => {
+const ReviewList = ({ store_uuid }) => {
   const [reviewList, setReviewList] = useState([])
-  const store = props.store
 
   useEffect(() => {
-    if (!store) return;
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/review/store/${store.uuid}`)
-      .then(res => setReviewList(res.data))
-      .catch(() => alert(`리뷰 목록을 불러오는데 실패했습니다.`))
-  }, [store])
+    if (!store_uuid) return
+    axios.get(`${process.env.NEXT_PUBLIC_API}/review/store/${store_uuid}`).
+      then(res => setReviewList(res.data)).
+      catch(() => alert(`리뷰 목록을 불러오는데 실패했습니다.`))
+  }, [store_uuid])
 
   return (
     <CommentDiv>
@@ -33,13 +31,14 @@ const ReviewList = (props) => {
       {
         reviewList.map(review => {
           return (
-            <Comment key={review.uuid} style={{marginTop: 8}}>
+            <Comment key={review.uuid} style={{ marginTop: 8 }}>
               <Comment.Content>
                 <Comment.Text>
                   {review.content}
                 </Comment.Text>
                 <Comment.Metadata>
-                  <div>{moment(review.created_at).format('YYYY-MM-DD hh:mm')}</div>
+                  <div>{moment(review.created_at).
+                    format('YYYY-MM-DD hh:mm')}</div>
                 </Comment.Metadata>
               </Comment.Content>
             </Comment>

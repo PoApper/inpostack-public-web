@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Comment, Divider, Header } from 'semantic-ui-react'
 import moment from 'moment'
 import styled from 'styled-components'
-import UserReviewForm from './userReviewForm'
+import UserReviewForm from '../store/userReviewForm'
 
 const ReviewList = (props) => {
   const [reviewList, setReviewList] = useState([])

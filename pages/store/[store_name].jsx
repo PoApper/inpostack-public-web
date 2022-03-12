@@ -6,7 +6,7 @@ import { Message } from 'semantic-ui-react'
 import Layout from '../../components/layout'
 import MenuGrid from '../../components/menu/menuGrid'
 import StoreInfoDiv from '../../components/store/storeInfoDiv'
-import ReviewList from '../../components/store/reviewList'
+import ReviewList from '../../components/review/reviewList'
 import RecommendStore from '../../components/index/recommendStore'
 import Head from 'next/head'
 

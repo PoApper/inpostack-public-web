@@ -48,7 +48,7 @@ const ReviewList = ({ store_uuid }) => {
 
       <Divider/>
 
-      <UserReviewForm store={store}/>
+      <UserReviewForm store_uuid={store_uuid}/>
 
     </CommentDiv>
   )

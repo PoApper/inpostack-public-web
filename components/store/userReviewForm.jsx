@@ -2,14 +2,14 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Button, Form } from 'semantic-ui-react'
 
-const UserReviewForm = ({ store }) => {
+const UserReviewForm = ({ store_uuid }) => {
   const [userReviewText, setUserReviewText] = useState('')
 
   async function submitReview () {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API}/review/reviewer`, {
         content: userReviewText,
-        store_uuid: store.uuid,
+        store_uuid: store_uuid,
       }, { withCredentials: true })
       alert('리뷰가 등록되었습니다!')
       window.location.reload()

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Divider, Icon, Image } from 'semantic-ui-react'
-// import StoreMap from './storeMap';
+import { Button, Divider, Icon, Image, List } from 'semantic-ui-react'
 import axios from 'axios'
+// import StoreMap from './storeMap';
 import { isBlurry } from '../../utils/blurry-check'
+import StoreOpeningHours from './StoreOpeningHours'
 
 const StoreInfoDiv = ({ storeInfo }) => {
   const uuid = storeInfo.uuid
@@ -88,19 +89,22 @@ const StoreInfoDiv = ({ storeInfo }) => {
 
       <Divider/>
 
-      <div>
-        <p>
-          <Icon name={'call'}/>
-          {
-            isBlurry(storeInfo.phone) ? (
-              <span className={'blurry-text'}>정보 수집중</span>
-            ) : (
-              <span> {storeInfo.phone}</span>
-            )
-          }
-        </p>
-        <p>
-          <Icon name={'home'}/>
+      <List>
+        <List.Item>
+          <List.Icon name={'call'} style={{width: 16}}/>
+          <List.Content>
+            {
+              isBlurry(storeInfo.phone) ? (
+                <span className={'blurry-text'}>정보 수집중</span>
+              ) : (
+                <span> {storeInfo.phone}</span>
+              )
+            }
+          </List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Icon name={'home'} style={{fontSize: '16px !important', height: '16px !important'}}/>
+          <List.Content>
           {
             isBlurry(storeInfo.address1) ? (
               <span className={'blurry-text'}>정보 수집중</span>
@@ -117,32 +121,39 @@ const StoreInfoDiv = ({ storeInfo }) => {
               )
             )
           }
-
+          </List.Content>
           {/* TODO: 클릭하면 펼쳐보이게 */}
           {/*<StoreMap address1={storeInfo.address1} />*/}
-        </p>
-        <p>
-          <Icon name={'clock'}/>
-          {
-            isBlurry(storeInfo.open_time) || isBlurry(storeInfo.close_time) ? (
-              <span className={'blurry-text'}>정보 수집중</span>
-            ) : (
-              <span>{storeInfo.open_time} ~ {storeInfo.close_time}</span>
-            )
-          }
-        </p>
-        <p>
-          <Icon name={'question circle'}/>
-          <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}
-             target={'_blank'} rel={'noreferrer'}>
-            이 식당의 소유주이신가요?
-          </a>
-        </p>
+        </List.Item>
+        <List.Item>
+          <List.Icon name={'clock'}/>
+          <List.Content>
+            {
+              isBlurry(storeInfo.opening_hours) ? (
+                <span className={'blurry-text'}>정보 수집중</span>
+              ) : (
+                <StoreOpeningHours
+                  openingHours={storeInfo.opening_hours}
+                />
+              )
+            }
+          </List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Icon name={'question circle'}/>
+          <List.Content>
+            <a href={process.env.NEXT_PUBLIC_STORE_OWNER_GOOGLE_FORM_URL}
+               target={'_blank'} rel={'noreferrer'}>
+              이 식당의 소유주이신가요?
+            </a>
+          </List.Content>
+        </List.Item>
+
         <Divider/>
         <p>
           {storeInfo.description}
         </p>
-      </div>
+      </List>
     </div>
   )
 }

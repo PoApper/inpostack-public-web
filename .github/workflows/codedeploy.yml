@@ -1,19 +1,66 @@
-name: npm build
-
 on: push
+
+name: Deploy Node App to Amazon EC2
+env:
+  S3_BUCKET_NAME: poapper-codedeploy
+  PROJECT_NAME: inpostack-public-web
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
+    name: BUILD
+    runs-on: ubuntu-18.04
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           cache: 'npm'
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo ${{ secrets.DOTENV_BUILD }} >> .env
+          cat .env
       - run: npm install
       - run: npm run build
+
+      - name: zip
+        run: zip -qq -r -x *.git* --symlinks $GITHUB_SHA.zip .
+        shell: bash
+
+      - name: AWS configure credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp --region ap-northeast-2 \
+          ./$GITHUB_SHA.zip \
+          s3://$S3_BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
+
+  deploy:
+    name: DEPLOY
+    runs-on: ubuntu-18.04
+    needs: build
+
+    steps:
+      - name: AWS configure credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      - name: Code Deploy
+        run: |
+          aws deploy create-deployment \
+          --application-name inpostack-public-web \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --deployment-group-name production \
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip

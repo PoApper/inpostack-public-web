@@ -23,7 +23,7 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo ${{ secrets.DOTENV_BUILD }} >> .env
+          echo "${{ secrets.DOTENV_BUILD }}" >> .env
           cat .env
       - run: npm install
       - run: npm run build

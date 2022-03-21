@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "public-web",
+      "name": "inpostack-public-web",
       "script": "npm",
       "args": "run start"
     }

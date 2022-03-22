@@ -9,11 +9,11 @@ import StoreOpeningHours from './StoreOpeningHours'
 const StoreInfoDiv = ({ storeInfo }) => {
   const uuid = storeInfo.uuid
 
-  const [storeImageLinkList, setStoreImageLinkList] = useState([])
+  const [storeImageList, setStoreImageList] = useState([])
 
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API}/store-image/${uuid}`).
-      then(res => setStoreImageLinkList(res.data)).
+      then(res => setStoreImageList(res.data)).
       catch((err) => console.log(err))
   }, [uuid])
 
@@ -72,11 +72,11 @@ const StoreInfoDiv = ({ storeInfo }) => {
 
       <StoreImageGrid>
         {
-          storeImageLinkList.map(link => {
+          storeImageList.map(storeImage => {
             return (
-              <StoreImageDiv key={link}>
+              <StoreImageDiv key={storeImage.uuid}>
                 <Image
-                  src={link ??
+                  src={storeImage.link ??
                     'https://via.placeholder.com/200?text=InPoStack'}
                   alt={'food_img'}
                   width={200} height={200}

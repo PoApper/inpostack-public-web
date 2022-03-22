@@ -8,7 +8,7 @@ import useUser from '../../data/useUser'
 
 const PCNavbar = (props) => {
   const { user, isLogout } = useUser();
-  const handleLogout = props.handleLogout
+  const handleLogout = props.handleLogout;
 
   return (
     <NavbarWrapper>

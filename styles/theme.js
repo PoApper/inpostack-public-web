@@ -27,6 +27,7 @@ const theme = {
     button: '#ffffffff',
   },
   breakpoint: {
+    lg: '1224px',
     m: '70rem',
     s: '40rem',
   },

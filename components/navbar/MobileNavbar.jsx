@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Icon, Image, Menu, Search } from 'semantic-ui-react'
+import { Icon, Image, Menu } from 'semantic-ui-react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import NavbarSearch from './navbar.search'
 import useUser from '../../data/useUser'
 
-const MobileNavbar = () => {
+const MobileNavbar = (props) => {
   const { user, isLogout } = useUser();
-  const [showBottomBar, setShowBottomBar] = useState(false)
+  const handleLogout = props.handleLogout;
+  const [showBottomBar, setShowBottomBar] = useState(false);
+  const [showUserBar, setShowUserBar] = useState(false);
 
   return (
     <NavbarWrapper>
@@ -17,13 +20,16 @@ const MobileNavbar = () => {
         </Menu.Item>
         <Menu.Item>
           <Link href={'/'} passHref>
-            <LogoDiv>
-              <Image centered src={'/inpostack-logo.svg'} alt="logo"
-                     style={{ width: '24px' }}/>
-            </LogoDiv>
+            <a>
+              <LogoDiv>
+                <Image centered src={'/inpostack-logo.svg'} alt="logo"
+                       style={{ width: '24px' }}/>
+              </LogoDiv>
+            </a>
           </Link>
         </Menu.Item>
-        <Menu.Item position={'right'}>
+        <Menu.Item position={'right'}
+                   onClick={() => setShowUserBar(!showUserBar)}>
           <Icon name={'user'}/>
         </Menu.Item>
       </NavbarMenu>
@@ -31,19 +37,37 @@ const MobileNavbar = () => {
         showBottomBar ? (
           <BottomMenu text vertical>
             <Menu.Item>
-              <Search
-                size="mini"
-                value={""}
-                placeholder={'coming soon... 👨‍🚀'}
-                input={{ fluid: true }}
-              />
+              <NavbarSearch/>
             </Menu.Item>
             <Menu.Item>
-              전체 가게 보기
+              <Link href={'/store'} passHref>
+                <a style={{color: 'black'}}>전체 가게 보기</a>
+              </Link>
             </Menu.Item>
           </BottomMenu>
         ) : null
       }
+      {
+        showUserBar ? (
+          <BottomMenu text vertical>
+            <Menu.Menu position='right'>
+              <Menu.Item>
+                {user.name}
+              </Menu.Item>
+              <Menu.Item onClick={handleLogout}>
+                로그아웃
+              </Menu.Item>
+              <Menu.Item>
+                <Link href={'/user/favorite'} passHref>
+                  <a style={{color: 'black'}}>관심 가게</a>
+                </Link>
+              </Menu.Item>
+            </Menu.Menu>
+          </BottomMenu>
+        ) 
+        : null
+      }
+
     </NavbarWrapper>
   )
 }
@@ -54,7 +78,7 @@ const NavbarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
+  margin: auto !important;
 
   max-width: ${({ theme }) => theme.contentWidth};
 `

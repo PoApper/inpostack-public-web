@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 
-const LoginLayout = ({ children }) => {
+const RegisterLayout = ({ children }) => {
   return (
     <div>
       <Head>
@@ -27,4 +27,4 @@ const Wrapper = {
   margin: '0 auto 0'
 }
 
-export default LoginLayout
+export default RegisterLayout

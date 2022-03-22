@@ -2,9 +2,9 @@ import { Form } from 'semantic-ui-react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-import Layout from '../components/layout'
 import Head from 'next/head'
 import React from 'react'
+import RegisterLayout from '../components/registerLayout'
 
 const Register = () => {
   const router = useRouter()
@@ -21,7 +21,7 @@ const Register = () => {
   }
 
   return (
-    <Layout>
+    <RegisterLayout>
       <Head>
         <title>회원가입 | InPoStack</title>
       </Head>
@@ -31,7 +31,7 @@ const Register = () => {
           PoApper SSO로 InPoStack 가입하기
         </Form.Button>
       </Form>
-    </Layout>
+    </RegisterLayout>
   )
 }
 export default Register

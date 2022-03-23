@@ -20,14 +20,14 @@ const MobileNavbar = () => {
           <Icon name={'sidebar'}/>
         </Menu.Item>
 
-        <Menu.Item>
-          <Link href={'/'} passHref>
+        <Link href={'/'} passHref>
+          <Menu.Item>
             <LogoDiv>
               <Image centered src={'/inpostack-logo.svg'} alt="logo"
                      style={{ width: '24px' }}/>
             </LogoDiv>
-          </Link>
-        </Menu.Item>
+          </Menu.Item>
+        </Link>
 
         <Menu.Item position={'right'}
                    onClick={() => {

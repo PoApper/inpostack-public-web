@@ -26,7 +26,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
     }).catch(err => {
       const status = err.response.status
       if (status === 403) {
-        alert('로그인 후 평가해주세요!')
+        alert('로그인이 필요합니다!')
       } else {
         alert('즐겨찾기에 추가하는데 실패했습니다')
       }
@@ -43,7 +43,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
     }).catch(err => {
       const status = err.response.status
       if (status === 403) {
-        alert('로그인 후 평가해주세요!')
+        alert('로그인이 필요합니다!')
       } else {
         alert('즐겨찾기에서 제거하는데 실패했습니다')
       }

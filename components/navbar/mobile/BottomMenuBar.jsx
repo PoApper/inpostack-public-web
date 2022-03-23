@@ -17,7 +17,7 @@ const BottomMenuBar = () => {
         </Menu.Item>
       </Link>
 
-      <Link href={'/store'} passHref>
+      <Link href={'/in-postech'} passHref>
         <Menu.Item>
           In POSTECH?
         </Menu.Item>

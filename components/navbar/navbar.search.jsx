@@ -31,4 +31,8 @@ export default NavbarSearch
 const SearchWrapper = styled.div`
   margin: auto 0;
   width: 400px;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    width: 100%;
+  }
 `

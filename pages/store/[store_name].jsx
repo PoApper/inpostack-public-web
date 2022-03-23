@@ -37,7 +37,6 @@ const StorePage = () => {
               <Message.Header>📢InPoStack에서 안내드립니다!</Message.Header>
               <p>
                 InPoStack은 포항공대 학생들의 제보로 운영되는 맛집 사이트 입니다. 🍴
-                운영에 최선을 다하고 있지만 가게와 메뉴의 최신 정보를 반영하지 못 할 수도 있습니다. 🙏
                 가게·메뉴 정보에서 <span className={'blurry-text'}>정보 수집중</span> 흐릿하게
                 표시된 부분은 InPoStack 맛집 데이터베이스에 정보가 없는 항목 입니다. 😢
                 &ldquo;<a href={process.env.NEXT_PUBLIC_REQUEST_GOOGLE_FORM_URL}

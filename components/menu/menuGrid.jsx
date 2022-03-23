@@ -29,7 +29,7 @@ const MenuGrid = ({ categoriesWithMenu }) => {
 
         <p style={{marginTop: 20}}>
           아직 가게에 등록된 메뉴 정보가 없습니다 😢
-          &ldquo;<a href={process.env.NEXT_PUBLIC_REQUEST_GOOGLE_FORM_URL}
+          &ldquo;<a href={process.env.NEXT_PUBLIC_REPORT_GOOGLE_FORM_URL}
                    target={'_blank'} rel={'noreferrer'}>
           InPoStack 맛집 제보</a>&rdquo;
           링크를 통해 맛있게 먹은 메뉴를 직접 제보할 수도 있습니다 😋

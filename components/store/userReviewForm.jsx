@@ -16,7 +16,7 @@ const UserReviewForm = ({ store_uuid }) => {
     } catch (err) {
       const status = err.response.status
       if (status === 403) {
-        alert('로그인 후 리뷰를 이용해주세요!')
+        alert('로그인이 필요합니다!')
       } else {
         alert('리뷰 작성에 실패했습니다.')
       }

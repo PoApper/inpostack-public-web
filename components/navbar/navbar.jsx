@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
 import axios from 'axios'
-import PCNavbar from './PCNavbar'
-import MobileNavbar from './MobileNavbar'
+import PCNavbar from './PC/PCNavbar'
+import MobileNavbar from './mobile/MobileNavbar'
 
 const Navbar = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })

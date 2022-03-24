@@ -8,11 +8,14 @@ import Layout from '../../components/layout'
 import StoreTypeLogo from '../../components/store/storeTypeLogo'
 import { textLengthOverCut } from '../../utils/text-length-over-cut'
 
+import { divideOpenCloseStore } from '../../utils/divideOpenCloseStore'
+
 import StoreTypeList from '../../assets/StoreTypeList'
 import {
   StoreRegionColor,
   StoreRegionKorean,
 } from '../../assets/StoreRegionType'
+import { StoreSortOption } from '../../assets/StoreSortOption'
 
 const StoreIndexPage = () => {
   const [stores, setStores] = useState([])
@@ -34,11 +37,7 @@ const StoreIndexPage = () => {
         <Title>가게 목록</Title>
         <Dropdown
           selection
-          options={[
-            { key: 'name', text: '이름순', value: 'name' },
-            { key: 'visit', text: '방문자순', value: 'visit' },
-            { key: 'distance', text: '거리순', value: 'distance' },
-          ]}
+          options={StoreSortOption}
           onChange={(e, { value }) => setOrder(value?.toString())}
           style={{ marginBottom: '10px' }}
           value={order}
@@ -62,12 +61,14 @@ const StoreIndexPage = () => {
 
       <StoreGrid>
         {
-          stores.map(store => {
+          divideOpenCloseStore(stores).map(store => {
             if (selectedStoreType === 'all' || store.store_type ===
               selectedStoreType) {
               return (
                 <Link href={`/store/${store.name}`} key={store.uuid} passHref>
-                  <MainBox>
+                  <MainBox className={
+                    store['status'] === 'close' ? 'store-close-div' : null
+                  }>
                     <StoreImage>
                       <Image
                         src={store.image_url ??
@@ -79,12 +80,12 @@ const StoreIndexPage = () => {
                     </StoreImage>
 
                     <StoreInfo>
-                      <h4 style={{display: 'flex', alignItems: 'center'}}>
+                      <h4 style={{ display: 'flex', alignItems: 'center' }}>
                         {
                           textLengthOverCut(
                             store.name,
                             store.region ? (14 - store.region.length) : 20,
-                            '…'
+                            '…',
                           )
                         }
                         {
@@ -92,8 +93,8 @@ const StoreIndexPage = () => {
                             <Label
                               style={{
                                 marginLeft: 8, color: 'white',
-                                backgroundColor: StoreRegionColor[store.region]
-                            }}>
+                                backgroundColor: StoreRegionColor[store.region],
+                              }}>
                               {StoreRegionKorean[store.region]}
                             </Label>
                           ) : null

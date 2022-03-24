@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Divider, Icon, Image, List } from 'semantic-ui-react'
+import { Button, Divider, Icon, Image, Label, List } from 'semantic-ui-react'
 import axios from 'axios'
 // import StoreMap from './storeMap';
 import { isBlurry } from '../../utils/blurry-check'
@@ -54,8 +54,16 @@ const StoreInfoDiv = ({ storeInfo }) => {
   return (
     <div>
       <StoreHeader>
-        <h3 style={{ fontSize: 32 }}>
-          {storeInfo.name}
+        <h3 style={{ fontSize: 32, display: 'flex', alignItems: 'center' }}>
+          <span style={{marginRight: 8}}>
+            {storeInfo.name}
+          </span>
+          <Label color={
+            storeInfo.status === 'close' ? 'red' :
+              storeInfo.status === 'open' ? 'green' : 'grey'
+          }>
+            {storeInfo.status}
+          </Label>
         </h3>
 
         <div>
@@ -91,7 +99,7 @@ const StoreInfoDiv = ({ storeInfo }) => {
 
       <List>
         <List.Item>
-          <List.Icon name={'call'} style={{width: 16}}/>
+          <List.Icon name={'call'} style={{ width: 16 }}/>
           <List.Content>
             {
               isBlurry(storeInfo.phone) ? (
@@ -103,24 +111,27 @@ const StoreInfoDiv = ({ storeInfo }) => {
           </List.Content>
         </List.Item>
         <List.Item>
-          <List.Icon name={'home'} style={{fontSize: '16px !important', height: '16px !important'}}/>
+          <List.Icon name={'home'} style={{
+            fontSize: '16px !important',
+            height: '16px !important',
+          }}/>
           <List.Content>
-          {
-            isBlurry(storeInfo.address1) ? (
-              <span className={'blurry-text'}>정보 수집중</span>
-            ) : (
-              storeInfo.naver_map_url ? (
-                <a href={storeInfo.naver_map_url} target={'_blank'}
-                   rel={'noreferrer'}>
-                  {storeInfo.address1} {storeInfo.address2}
-                </a>
+            {
+              isBlurry(storeInfo.address1) ? (
+                <span className={'blurry-text'}>정보 수집중</span>
               ) : (
-                <span>
+                storeInfo.naver_map_url ? (
+                  <a href={storeInfo.naver_map_url} target={'_blank'}
+                     rel={'noreferrer'}>
+                    {storeInfo.address1} {storeInfo.address2}
+                  </a>
+                ) : (
+                  <span>
                   {storeInfo.address1} {storeInfo.address2}
                 </span>
+                )
               )
-            )
-          }
+            }
           </List.Content>
           {/* TODO: 클릭하면 펼쳐보이게 */}
           {/*<StoreMap address1={storeInfo.address1} />*/}

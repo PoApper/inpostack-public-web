@@ -24,7 +24,7 @@ const BottomUserMenuBar = () => {
     <BottomMenu text vertical>
       <Menu.Menu position="right">
         {
-          isLogout ? (
+          !isLogout ? (
             <>
               <Menu.Item>
                 {user.name}
